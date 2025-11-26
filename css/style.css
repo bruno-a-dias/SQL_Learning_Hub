@@ -1,0 +1,434 @@
+/* Caminho completo do arquivo: /css/style.css */
+/*
+  Objetivo deste arquivo:
+  - Definir o layout responsivo base do site: header fixo, sidebar fixa no desktop e conteúdo fluido. [web:7][web:10][web:16]
+  - Garantir boas práticas de UI/UX: espaçamento consistente, tipografia legível, uso de cards, tabelas e carrosséis.
+  - Aplicar requisitos básicos de acessibilidade alinhados ao eMAG: foco visível, contraste, regiões semânticas. [web:4][web:6][web:18]
+*/
+
+/* Reset simples para garantir consistência visual entre navegadores */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  background-color: #f5f5f5;
+  color: #222222;
+}
+
+/* Classe de acessibilidade para textos apenas para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* HEADER */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-primary, #004d40);
+  color: #ffffff;
+}
+
+/* Agrupamento de título e subtítulo */
+.app-header__logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.app-header__subtitle {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+/* Controles do cabeçalho (flags + menu mobile) */
+.app-header__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lang-toggle {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lang-toggle img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Botão de menu (hamburger) para mobile */
+.nav-toggle {
+  display: none; /* visível apenas em telas pequenas via media query */
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.nav-toggle__bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: #ffffff;
+  margin: 3px 0;
+}
+
+/* LAYOUT PRINCIPAL */
+
+.app-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - 56px);
+}
+
+/* SIDEBAR */
+
+.side-nav {
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  padding: 0.5rem 0.75rem;
+  overflow-y: auto;
+}
+
+.side-nav__list,
+.side-nav__sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.side-nav__group + .side-nav__group {
+  margin-top: 0.5rem;
+}
+
+/* Botão que representa o título de cada grupo (Relacional / Não Relacional) */
+.side-nav__group-title {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0.4rem 0.25rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #333333;
+  cursor: default;
+}
+
+.side-nav__sublist {
+  padding-left: 0.25rem;
+}
+
+/* Cada link de seção do menu lateral */
+.side-nav__link {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+  color: #444444;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.side-nav__link:hover,
+.side-nav__link:focus {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Item ativo do menu lateral, aplicado via JS */
+.side-nav__link--active {
+  background-color: rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+.main-content {
+  padding: 1rem 1.25rem 2rem;
+  background-color: #fafafa;
+}
+
+/* Breadcrumb simples e acessível */
+.breadcrumb {
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb li::after {
+  content: ">";
+  margin-left: 0.25rem;
+}
+
+.breadcrumb li:last-child::after {
+  content: "";
+}
+
+/* Conteúdo textual padrão */
+#content-area h1,
+#content-area h2,
+#content-area h3 {
+  color: #222222;
+  margin-top: 0.5rem;
+}
+
+#content-area p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Cards reutilizáveis para resumos de conceitos, exemplos e projetos */
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin-bottom: 0.75rem;
+}
+
+.card__title {
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.card__subtitle {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* Layout para listas de cards (por exemplo, conceitos ou exercícios) */
+.card-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .card-grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .card-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* TABELAS DIDÁTICAS */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0.75rem 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table caption {
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.table th,
+.table td {
+  border: 1px solid #e0e0e0;
+  padding: 0.4rem 0.5rem;
+}
+
+.table thead {
+  background-color: #eeeeee;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* CARROSSEL SIMPLES PARA EXEMPLOS OU SLIDES */
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin: 0.75rem 0;
+}
+
+.carousel__track {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel__slide {
+  min-width: 100%;
+  padding: 0.75rem 1rem;
+}
+
+.carousel__controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem 0.5rem;
+}
+
+.carousel__button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* PLAYGROUND SQL (campo de texto + resultado) */
+
+.sql-exercise {
+  margin: 1rem 0;
+}
+
+.sql-exercise__label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.sql-exercise__textarea {
+  width: 100%;
+  min-height: 120px;
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #cccccc;
+  resize: vertical;
+}
+
+.sql-exercise__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.button {
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.button--primary {
+  background-color: var(--color-primary, #004d40);
+  color: #ffffff;
+}
+
+.button--secondary {
+  background-color: #e0e0e0;
+  color: #222222;
+}
+
+/* Resultados do playground */
+.sql-exercise__result {
+  margin-top: 0.75rem;
+}
+
+/* Checkbox para marcar exercício concluído */
+.exercise-status {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+/* RODAPÉ */
+
+.app-footer {
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  background-color: #eeeeee;
+  color: #333333;
+}
+
+/* Foco visível global para acessibilidade em conformidade com eMAG */
+:focus-visible {
+  outline: 2px solid #ff9800;
+  outline-offset: 2px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 767px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .side-nav {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 260px;
+    max-width: 80%;
+    height: calc(100vh - 56px);
+    transform: translateX(-100%);
+    transition: transform 0.25s ease-out;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+  }
+
+  .side-nav--open {
+    transform: translateX(0);
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+}

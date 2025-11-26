@@ -1,0 +1,24 @@
+/* Caminho completo do arquivo: /css/theme-brazil.css */
+/*
+  Tema Brasil:
+  - Paleta baseada em verde, amarelo e azul.
+  - Mantém contraste mínimo recomendado para acessibilidade. [web:4][web:6][web:18]
+*/
+
+:root {
+    --color-primary: #0b5e3c;   /* Verde escuro para header e botões principais */
+    --color-secondary: #f2c200; /* Amarelo para detalhes e destaques */
+    --color-accent: #165ea8;    /* Azul para links e elementos interativos */
+  }
+  
+  /* Exemplo de aplicação opcional para links e botões */
+  a {
+    color: var(--color-accent);
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .button--primary {
+    background-color: var(--color-primary);
+  }
+  

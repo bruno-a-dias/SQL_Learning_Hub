@@ -1,423 +1,362 @@
+<!-- Caminho completo do arquivo: /index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!--
+    Projeto: Site Educacional sobre Bancos de Dados Relacionais e Não Relacionais.
+    Conteúdo pedagógico inspirado em:
+    - SQL-for-Absolute-Beginners.pdf (fundamentos de SQL para iniciantes). [attached_file:22]
+    - SQL-Basics.pdf (consultas básicas, operadores, funções e joins). [attached_file:23]
+    - SQL-for-Data-Analysis.pdf (SQL aplicado à análise de dados, janela, CTE, otimização). [attached_file:24]
+
+    Este arquivo define:
+    - Estrutura base da aplicação.
+    - Layout com menu lateral (desktop) e navegação adaptada para mobile (dropdown).
+    - Botões de idioma/tema (Brasil/EUA).
+    - Regiões semânticas para acessibilidade em conformidade com o eMAG. [web:4][web:6][web:18]
+  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Banco de Dados - Guia Completo</title>
-  <style>
-    :root {
-      --sidebar-width: 270px;
-    }
-    body {
-      font-family: var(--font-family-base, "Inter", Arial, sans-serif);
-      margin: 0;
-      padding: 0;
-      background: var(--color-background, #FCFCF9);
-      color: var(--color-text, #13343B);
-      min-height: 100vh;
-      box-sizing: border-box;
-    }
-    .container {
-      display: flex;
-      min-height: 100vh;
-    }
-    aside {
-      width: var(--sidebar-width);
-      background: var(--color-surface, #FFFDFD);
-      border-right: 1px solid var(--color-border, #e0e0e0);
-      padding: 0;
-      flex-shrink: 0;
-      position: sticky;
-      top: 0;
-      min-height: 100vh;
-      transition: left 0.3s;
-      z-index: 50;
-    }
-    .sidebar-title {
-      font-size: 1.3em;
-      font-weight: 600;
-      padding: 1.3em 1em 1em 1.3em;
-      color: var(--color-primary, #21808D);
-      letter-spacing: -0.5px;
-      margin: 0;
-      border-bottom: 1px solid var(--color-border, #e0e0e0);
-      background: var(--color-surface, #FFFDFD);
-    }
-    nav {
-      padding: 0 0.5em 1.2em 0.5em;
-      margin-top: 1em;
-    }
-    .sidebar-list,
-    .sidebar-sublist {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .sidebar-list > li {
-      margin-bottom: 0.4em;
-    }
-    .sidebar-link {
-      display: flex;
-      align-items: center;
-      font-size: 1em;
-      padding: 0.7em 1.3em 0.7em 1.3em;
-      color: var(--color-text, #13343B);
-      text-decoration: none;
-      cursor: pointer;
-      border-radius: 8px;
-      font-weight: 500;
-      transition: background .18s;
-    }
-    .sidebar-link:hover, .sidebar-link.active {
-      background: var(--color-secondary, rgba(94,82,64,0.12));
-      color: var(--color-primary, #21808D);
-    }
-    .sidebar-collapse {
-      background: none;
-      border: none;
-      color: var(--color-primary, #21808D);
-      font-size: 1em;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      font-weight: 500;
-      padding: 0.6em 1.3em 0.6em 1.5em;
-      border-radius: 8px;
-      width: 100%;
-      margin: 0;
-    }
-    .sidebar-collapse[aria-expanded="true"]::after {
-      content: "▲";
-      margin-left: auto;
-      font-size: 0.8em;
-    }
-    .sidebar-collapse[aria-expanded="false"]::after {
-      content: "▼";
-      margin-left: auto;
-      font-size: 0.8em;
-    }
-    .sidebar-sublist {
-      margin-left: 1.8em;
-      transition: height 0.25s;
-      overflow: hidden;
-    }
-    .dropdown-spacer {
-      height: 8px;
-    }
-    main {
-      flex: 1 1 0;
-      padding: 2.3em 2em 2em 2em;
-      background: var(--color-background, #FCFCF9);
-      min-width: 0;
-    }
-    .mobile-sidebar-btn {
-      display: none;
-      position: fixed;
-      top: 1.2em;
-      left: 1.2em;
-      background: var(--color-primary, #21808D);
-      color: var(--color-btn-primary-text, #FCFCF9);
-      border: none;
-      border-radius: 8px;
-      padding: 0.6em 1.1em;
-      font-size: 1.1em;
-      z-index: 100;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.05));
-    }
-    /* Responsive: Mobile layout for sidebar */
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-      }
-      aside {
-        position: fixed;
-        left: -340px;
-        top: 0;
-        width: 85vw;
-        max-width: 320px;
-        min-width: 200px;
-        height: 100vh;
-        z-index: 150;
-        box-shadow: 2px 0 20px rgba(19,52,59,0.08);
-        transition: left 0.3s;
-      }
-      aside.open {
-        left: 0;
-      }
-      .mobile-sidebar-btn {
-        display: block;
-      }
-      main {
-        padding: 3em 0.8em 1.2em 0.8em;
-      }
-      body.sidebar-open {
-        overflow: hidden;
-      }
-      .overlay {
-        display: block;
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0,0,0,0.22);
-        z-index: 110;
-      }
-      .overlay.hide {
-        display: none;
-      }
-    }
-    @media (max-width: 600px) {
-      aside {
-        width: 94vw;
-        max-width: 99vw;
-        min-width: 164px;
-      }
-    }
-    /* Scrollbar styling for sidebar */
-    aside {
-      scrollbar-width: thin;
-      scrollbar-color: var(--color-primary, #21808D) var(--color-background, #FCFCF9);
-    }
-    aside::-webkit-scrollbar {
-      width: 7px;
-      background: var(--color-background, #FCFCF9);
-    }
-    aside::-webkit-scrollbar-thumb {
-      background: var(--color-primary, #21808D);
-      border-radius: 3px;
-    }
-    /* Visual improvements */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border-width: 0;
-    }
-  </style>
+  <title>SQL Learning Hub - Bancos de Dados</title>
+
+  <!-- CSS principal e temas -->
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/theme-brazil.css" id="theme-brazil">
+  <link rel="stylesheet" href="./css/theme-usa.css" id="theme-usa" disabled>
 </head>
 <body>
-  <button class="mobile-sidebar-btn" id="openSidebarBtn" aria-label="Abrir menu de tópicos">&#9776; Tópicos</button>
-  <div class="overlay hide" id="overlay" tabindex="-1"></div>
-  <div class="container">
-    <aside id="sidebar" aria-label="Navegação lateral de tópicos">
-      <h2 class="sidebar-title">Banco de Dados</h2>
-      <nav aria-label="Sumário dos tópicos">
-        <ul class="sidebar-list">
-          <li>
-            <button class="sidebar-collapse" type="button" aria-expanded="true" aria-controls="section-relacional">
-              Banco de Dados Relacional
-            </button>
-            <ul class="sidebar-sublist" id="section-relacional">
-              <li>
-                <button class="sidebar-collapse" type="button" aria-expanded="false" aria-controls="relacional-iniciante">
-                  Iniciantes
-                </button>
-                <ul class="sidebar-sublist" id="relacional-iniciante" style="height: 0;">
-                  <li>
-                    <a href="#" class="sidebar-link" data-topic="relacional-iniciantes-exercicios">Exercícios</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <button class="sidebar-collapse" type="button" aria-expanded="false" aria-controls="relacional-intermediario">
-                  Intermediário
-                </button>
-                <ul class="sidebar-sublist" id="relacional-intermediario" style="height: 0;">
-                  <li>
-                    <a href="#" class="sidebar-link" data-topic="relacional-intermediario-exercicios">Exercícios</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <button class="sidebar-collapse" type="button" aria-expanded="false" aria-controls="relacional-avancado">
-                  Avançado
-                </button>
-                <ul class="sidebar-sublist" id="relacional-avancado" style="height: 0;">
-                  <li>
-                    <a href="#" class="sidebar-link" data-topic="relacional-avancado-exercicios">Exercícios</a>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="#" class="sidebar-link" data-topic="relacional-projetos">Projetos práticos</a></li>
-              <li><a href="#" class="sidebar-link" data-topic="relacional-aplicacoes">Aplicações reais</a></li>
-            </ul>
-          </li>
-          <li>
-            <div class="dropdown-spacer"></div>
-          </li>
-          <li>
-            <button class="sidebar-collapse" type="button" aria-expanded="true" aria-controls="section-naorelacional">
-              Banco de Dados Não Relacional
-            </button>
-            <ul class="sidebar-sublist" id="section-naorelacional">
-              <li>
-                <button class="sidebar-collapse" type="button" aria-expanded="false" aria-controls="naorelacional-iniciante">
-                  Iniciantes
-                </button>
-                <ul class="sidebar-sublist" id="naorelacional-iniciante" style="height: 0;">
-                  <li>
-                    <a href="#" class="sidebar-link" data-topic="naorelacional-iniciantes-exercicios">Exercícios</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <button class="sidebar-collapse" type="button" aria-expanded="false" aria-controls="naorelacional-intermediario">
-                  Intermediário
-                </button>
-                <ul class="sidebar-sublist" id="naorelacional-intermediario" style="height: 0;">
-                  <li>
-                    <a href="#" class="sidebar-link" data-topic="naorelacional-intermediario-exercicios">Exercícios</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <button class="sidebar-collapse" type="button" aria-expanded="false" aria-controls="naorelacional-avancado">
-                  Avançado
-                </button>
-                <ul class="sidebar-sublist" id="naorelacional-avancado" style="height: 0;">
-                  <li>
-                    <a href="#" class="sidebar-link" data-topic="naorelacional-avancado-exercicios">Exercícios</a>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="#" class="sidebar-link" data-topic="naorelacional-projetos">Projetos práticos</a></li>
-              <li><a href="#" class="sidebar-link" data-topic="naorelacional-aplicacoes">Aplicações reais</a></li>
-            </ul>
-          </li>
-        </ul>
+  <!--
+    HEADER: área superior fixa com:
+    - Título do site.
+    - Botão de alternância de idioma (PT/EN) com flags.
+    - Botão para abrir/fechar o menu no mobile.
+  -->
+  <header class="app-header">
+    <div class="app-header__logo">
+      <span class="app-header__title" data-i18n="site_title">
+        SQL Learning Hub
+      </span>
+      <span class="app-header__subtitle" data-i18n="site_subtitle">
+        Bancos de Dados Relacionais e Não Relacionais
+      </span>
+    </div>
+
+    <!-- Alternância de idioma e tema por flags -->
+    <div class="app-header__controls">
+      <!--
+        Botão com bandeira do Brasil:
+        - Define idioma para pt-BR.
+        - Ativa o tema em verde/amarelo/azul, inspirado na identidade visual brasileira. [web:7][web:10]
+      -->
+      <button
+        type="button"
+        class="lang-toggle lang-toggle--br"
+        aria-label="Mudar idioma para Português do Brasil"
+        data-lang="pt-BR"
+      >
+        <img src="./assets/img/flag-br.svg" alt="Português do Brasil">
+      </button>
+
+      <!--
+        Botão com bandeira dos EUA:
+        - Define idioma para en-US.
+        - Ativa o tema em azul/vermelho, mantendo contraste adequado. [web:7][web:10]
+      -->
+      <button
+        type="button"
+        class="lang-toggle lang-toggle--us"
+        aria-label="Switch language to English (United States)"
+        data-lang="en-US"
+      >
+        <img src="./assets/img/flag-us.svg" alt="English (United States)">
+      </button>
+
+      <!-- Botão de menu para mobile (hamburger) -->
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-label="Abrir ou fechar menu principal"
+        aria-expanded="false"
+        aria-controls="side-nav"
+      >
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!--
+    LAYOUT PRINCIPAL:
+    - <nav> lateral com tópicos fixos no desktop.
+    - <main> com conteúdo carregado dinamicamente.
+  -->
+  <div class="app-layout">
+    <!-- Navegação lateral com estrutura pedagógica solicitada -->
+    <nav id="side-nav" class="side-nav" aria-label="Navegação principal">
+      <!--
+        Cada item do menu usa data-section e data-level para que o JS saiba
+        qual arquivo carregar de /content/ ao ser clicado.
+      -->
+      <ul class="side-nav__list">
+        <!-- Banco de Dados Relacional -->
+        <li class="side-nav__group">
+          <button class="side-nav__group-title" type="button">
+            <span data-i18n="menu_relational">Banco de Dados Relacional</span>
+          </button>
+          <ul class="side-nav__sublist">
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="relational"
+                data-level="iniciantes"
+              >
+                <span data-i18n="menu_relational_beginner">Iniciantes</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="relational"
+                data-level="exercicios-iniciantes"
+              >
+                <span data-i18n="menu_relational_beginner_exercises">Iniciantes - Exercícios</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="relational"
+                data-level="slides-iniciantes"
+              >
+                <span data-i18n="menu_relational_beginner_slides">Iniciantes - Slides</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="relational"
+                data-level="intermediario"
+              >
+                <span data-i18n="menu_relational_intermediate">Intermediário</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="relational"
+                data-level="exercicios-intermediario"
+              >
+                <span data-i18n="menu_relational_intermediate_exercises">Intermediário - Exercícios</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="relational"
+                data-level="slides-intermediario"
+              >
+                <span data-i18n="menu_relational_intermediate_slides">Intermediário - Slides</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="relational"
+                data-level="avancado"
+              >
+                <span data-i18n="menu_relational_advanced">Avançado</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="relational"
+                data-level="exercicios-avancado"
+              >
+                <span data-i18n="menu_relational_advanced_exercises">Avançado - Exercícios</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="relational"
+                data-level="slides-avancado"
+              >
+                <span data-i18n="menu_relational_advanced_slides">Avançado - Slides</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="relational"
+                data-level="projetos-praticos"
+              >
+                <span data-i18n="menu_relational_projects">Projetos práticos</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="relational"
+                data-level="aplicacoes-reais"
+              >
+                <span data-i18n="menu_relational_realworld">Aplicações reais</span>
+              </button>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Banco de Dados Não Relacional -->
+        <li class="side-nav__group">
+          <button class="side-nav__group-title" type="button">
+            <span data-i18n="menu_nosql">Banco de Dados Não Relacional</span>
+          </button>
+          <ul class="side-nav__sublist">
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="nosql"
+                data-level="iniciantes"
+              >
+                <span data-i18n="menu_nosql_beginner">Iniciantes</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="nosql"
+                data-level="exercicios-iniciantes"
+              >
+                <span data-i18n="menu_nosql_beginner_exercises">Iniciantes - Exercícios</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="nosql"
+                data-level="slides-iniciantes"
+              >
+                <span data-i18n="menu_nosql_beginner_slides">Iniciantes - Slides</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="nosql"
+                data-level="intermediario"
+              >
+                <span data-i18n="menu_nosql_intermediate">Intermediário</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="nosql"
+                data-level="exercicios-intermediario"
+              >
+                <span data-i18n="menu_nosql_intermediate_exercises">Intermediário - Exercícios</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="nosql"
+                data-level="slides-intermediario"
+              >
+                <span data-i18n="menu_nosql_intermediate_slides">Intermediário - Slides</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="nosql"
+                data-level="avancado"
+              >
+                <span data-i18n="menu_nosql_advanced">Avançado</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="nosql"
+                data-level="exercicios-avancado"
+              >
+                <span data-i18n="menu_nosql_advanced_exercises">Avançado - Exercícios</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="nosql"
+                data-level="slides-avancado"
+              >
+                <span data-i18n="menu_nosql_advanced_slides">Avançado - Slides</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="nosql"
+                data-level="projetos-praticos"
+              >
+                <span data-i18n="menu_nosql_projects">Projetos práticos</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="side-nav__link"
+                data-section="nosql"
+                data-level="aplicacoes-reais"
+              >
+                <span data-i18n="menu_nosql_realworld">Aplicações reais</span>
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <main id="main-content" class="main-content" tabindex="-1">
+      <!-- Breadcrumb para orientação do usuário e leitor de tela -->
+      <nav aria-label="Você está em" class="breadcrumb">
+        <ol>
+          <li><span data-i18n="breadcrumb_home">Início</span></li>
+          <li id="breadcrumb-section">Banco de Dados Relacional</li>
+          <li id="breadcrumb-level">Iniciantes</li>
+        </ol>
       </nav>
-    </aside>
-    <main id="content" tabindex="0" aria-live="polite">
-      <h1>Bem-vindo ao Guia de Banco de Dados</h1>
-      <p>Selecione um tópico à esquerda para começar.</p>
+
+      <!-- Área onde o conteúdo dos arquivos em /content/ será injetado -->
+      <article id="content-area">
+        <!-- Conteúdo inicial padrão, carregado também via JS -->
+        <h1 data-i18n="home_title">
+          Bem-vindo ao SQL Learning Hub
+        </h1>
+        <p data-i18n="home_intro_1">
+          Este ambiente foi criado para apoiar o estudo de bancos de dados relacionais e não relacionais, com foco em SQL para análise de dados, inspirado nos materiais anexados ao projeto. 
+        </p>
+        <p data-i18n="home_intro_2">
+          Use o menu lateral para navegar entre níveis (iniciantes, intermediário, avançado), exercícios com playground SQL integrado, slides para aulas e projetos práticos.
+        </p>
+      </article>
     </main>
   </div>
-  <script>
-    // Sidebar dropdown logic for desktop and mobile
-    function toggleSublist(btn, subListId) {
-      const sublist = document.getElementById(subListId);
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', !expanded);
-      if (sublist) {
-        if (!expanded) {
-          sublist.style.height = sublist.scrollHeight + 'px';
-        } else {
-          sublist.style.height = '0';
-        }
-      }
-    }
-    // Event delegation for sidebar dropdowns
-    document.querySelectorAll('.sidebar-collapse').forEach(btn => {
-      const controls = btn.getAttribute('aria-controls');
-      btn.addEventListener('click', () => {
-        // If it's a root, keep expanded by default
-        if (['section-relacional','section-naorelacional'].includes(controls)) {
-          // Don't collapse root, just visually indicate
-          return;
-        }
-        toggleSublist(btn, controls);
-      });
-    });
-    // Initialize main sections as expanded
-    ['section-relacional','section-naorelacional'].forEach(id => {
-      document.getElementById(id).style.height = 'auto';
-    });
 
-    // Responsive Sidebar for Mobile
-    const sidebar = document.getElementById('sidebar');
-    const btnOpenSidebar = document.getElementById('openSidebarBtn');
-    const overlay = document.getElementById('overlay');
-    btnOpenSidebar.addEventListener('click', () => {
-      sidebar.classList.add('open');
-      overlay.classList.remove('hide');
-      document.body.classList.add('sidebar-open');
-      sidebar.focus();
-    });
-    overlay.addEventListener('click', closeSidebar);
-    function closeSidebar() {
-      sidebar.classList.remove('open');
-      overlay.classList.add('hide');
-      document.body.classList.remove('sidebar-open');
-      btnOpenSidebar.focus();
-    }
-    // Accessibility: Esc to close sidebar
-    document.addEventListener('keydown', function(ev) {
-      if (ev.key === 'Escape' && sidebar.classList.contains('open')) {
-        closeSidebar();
-      }
-    });
+  <!-- Rodapé com informações de autoria e aviso de direitos autorais -->
+  <footer class="app-footer">
+    <p>
+      <span data-i18n="footer_text">
+        Conteúdo didático derivado de materiais de SQL para iniciantes, fundamentos e análise de dados, com adaptação original para uso em sala de aula. Respeito integral aos direitos autorais dos livros utilizados como referência.
+      </span>
+    </p>
+  </footer>
 
-    // Sidebar links event
-    document.querySelectorAll('.sidebar-link').forEach(link => {
-      link.addEventListener('click', function(ev) {
-        ev.preventDefault();
-        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-        // Placeholder: update content area
-        const topic = this.dataset.topic || "";
-        showTopic(topic);
-        // In mobile, close sidebar after selection
-        if (window.innerWidth <= 900) {
-          closeSidebar();
-        }
-      });
-    });
-    function showTopic(topic) {
-      const main = document.getElementById('content');
-      let title = '';
-      let p = '';
-      switch (topic) {
-        case 'relacional-iniciantes-exercicios':
-          title = 'Banco de Dados Relacional - Iniciantes - Exercícios';
-          p = 'Aqui você encontrará exercícios para principiantes em bancos de dados relacionais.';
-          break;
-        case 'relacional-intermediario-exercicios':
-          title = 'Banco de Dados Relacional - Intermediário - Exercícios';
-          p = 'Exercícios voltados ao nível intermediário em bancos de dados relacionais.';
-          break;
-        case 'relacional-avancado-exercicios':
-          title = 'Banco de Dados Relacional - Avançado - Exercícios';
-          p = 'Exercícios para estudantes avançados em bancos de dados relacionais.';
-          break;
-        case 'relacional-projetos':
-          title = 'Banco de Dados Relacional - Projetos Práticos';
-          p = 'Projetos práticos para aplicar conhecimentos de bancos de dados relacionais no mundo real.';
-          break;
-        case 'relacional-aplicacoes':
-          title = 'Banco de Dados Relacional - Aplicações Reais';
-          p = 'Veja exemplos de aplicações reais utilizando bancos de dados relacionais.';
-          break;
-        case 'naorelacional-iniciantes-exercicios':
-          title = 'Banco de Dados Não Relacional - Iniciantes - Exercícios';
-          p = 'Aqui você encontrará exercícios para principiantes em bancos de dados não relacionais.';
-          break;
-        case 'naorelacional-intermediario-exercicios':
-          title = 'Banco de Dados Não Relacional - Intermediário - Exercícios';
-          p = 'Exercícios para nível intermediário em bancos de dados não relacionais.';
-          break;
-        case 'naorelacional-avancado-exercicios':
-          title = 'Banco de Dados Não Relacional - Avançado - Exercícios';
-          p = 'Exercícios para estudantes avançados em bancos de dados não relacionais.';
-          break;
-        case 'naorelacional-projetos':
-          title = 'Banco de Dados Não Relacional - Projetos Práticos';
-          p = 'Projetos práticos para bancos de dados não relacionais.';
-          break;
-        case 'naorelacional-aplicacoes':
-          title = 'Banco de Dados Não Relacional - Aplicações Reais';
-          p = 'Exemplos práticos de aplicações reais com bancos de dados não relacionais.';
-          break;
-        default:
-          title = 'Bem-vindo ao Guia de Banco de Dados';
-          p = 'Selecione um tópico à esquerda para começar.';
-      }
-      main.innerHTML = `<h1>${title}</h1><p>${p}</p>`;
-      main.focus();
-    }
-  </script>
+  <!-- Scripts principais -->
+  <script src="./js/nav.js"></script>
+  <script src="./js/lang.js"></script>
+  <script src="./js/sql-playground.js"></script>
+  <script src="./js/main.js"></script>
 </body>
 </html>

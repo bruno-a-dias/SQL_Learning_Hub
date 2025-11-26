@@ -1,0 +1,24 @@
+/* Caminho completo do arquivo: /css/theme-usa.css */
+/*
+  Tema EUA:
+  - Paleta baseada em azul e vermelho, com tons neutros para fundo.
+  - Focado em contraste e legibilidade. [web:7][web:10]
+*/
+
+:root {
+    --color-primary: #0b3c73;   /* Azul escuro para header e botões */
+    --color-secondary: #c62828; /* Vermelho para destaques controlados */
+    --color-accent: #1565c0;    /* Azul médio para links */
+  }
+  
+  /* Exemplo de aplicação opcional */
+  a {
+    color: var(--color-accent);
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .button--primary {
+    background-color: var(--color-primary);
+  }
+  

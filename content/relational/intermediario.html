@@ -1,0 +1,124 @@
+<!-- Caminho completo do arquivo: /content/relational/intermediario.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>SQL Intermediário: Operadores Lógicos e Agregações</h1>
+      <p class="lead">
+        Avance além do básico. Aprenda a combinar múltiplas condições, buscar padrões de texto e calcular estatísticas sobre seus dados.
+      </p>
+    </header>
+  
+    <!-- Seção 1: Operadores Lógicos (AND, OR, NOT) -->
+    <section class="topic-block">
+      <h2>1. Combinando Condições (AND, OR, NOT)</h2>
+      <p>
+        No mundo real, filtros raramente são simples. Frequentemente precisamos de perguntas compostas, como "Quero clientes do Brasil E que sejam maiores de idade".
+      </p>
+      
+      <div class="card-grid card-grid--three">
+        <div class="card">
+          <h3 class="card__title">AND (E)</h3>
+          <p>Exige que <strong>todas</strong> as condições sejam verdadeiras.</p>
+          de class="code-small">WHERE COUNTRY = 'USA' AND JOB = 'S'</code>
+        </div>
+        <div class="card">
+          <h3 class="card__title">OR (OU)</h3>
+          <p>Exige que <strong>pelo menos uma</strong> condição seja verdadeira.</p>
+          de class="code-small">WHERE COUNTRY = 'USA' OR COUNTRY = 'Brazil'</code>
+        </div>
+        <div class="card">
+          <h3 class="card__title">NOT (NÃO)</h3>
+          <p>Inverte o resultado. Seleciona o que <strong>não</strong> atende à condição.</p>
+          de class="code-small">WHERE NOT COUNTRY = 'UK'</code>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Seção 2: Operadores Especiais (IN, BETWEEN, LIKE) -->
+    <section class="topic-block">
+      <h2>2. Operadores Especiais de Filtragem</h2>
+      <p>SQL oferece atalhos poderosos para tornar o código mais limpo e legível.</p>
+  
+      <h3>O Operador IN</h3>
+      <p>Substitui múltiplos de>OR</code>. Verifica se o valor está dentro de uma lista.</p>
+      <pre>de>SELECT * FROM PERSONS WHERE COUNTRY IN ('USA', 'UK', 'France');</code></pre>
+  
+      <h3>O Operador BETWEEN</h3>
+      <p>Seleciona valores dentro de um intervalo (inclusive os extremos). Funciona para números e datas.</p>
+      <pre>de>SELECT * FROM COUNTRIES WHERE LITERACY BETWEEN 90 AND 100;</code></pre>
+  
+      <h3>O Operador LIKE (Busca de Padrões)</h3>
+      <p>Usado para buscar partes de um texto. Utiliza "curingas":</p>
+      <ul class="feature-list">
+        <li><strong>% (Porcentagem):</strong> Substitui zero ou mais caracteres.</li>
+        <li><strong>_ (Sublinhado):</strong> Substitui exatamente um caractere.</li>
+      </ul>
+      <div class="code-example">
+        <p>Exemplo: Encontrar nomes que começam com a letra "A".</p>
+        <pre>de>SELECT NAME FROM PERSONS WHERE NAME LIKE 'A%';</code></pre>
+      </div>
+    </section>
+  
+    <!-- Seção 3: Trabalhando com Nulos (IS NULL) -->
+    <section class="topic-block">
+      <h2>3. O Conceito de NULL</h2>
+      <p>
+        de>NULL</code> em banco de dados não é zero, nem espaço em branco. <strong>NULL significa ausência de informação</strong> (desconhecido).
+      </p>
+      <p>
+        Cuidado: Você nunca deve usar de>= NULL</code>. A forma correta de verificar é usando os operadores:
+      </p>
+      <ul>
+        <li>de>IS NULL</code> (É nulo)</li>
+        <li>de>IS NOT NULL</code> (Não é nulo)</li>
+      </ul>
+    </section>
+  
+    <!-- Seção 4: Funções de Agregação (COUNT, SUM, AVG) -->
+    <section class="topic-block">
+      <h2>4. Funções de Agregação (Estatística)</h2>
+      <p>
+        Até agora olhamos linha por linha. As funções de agregação permitem "resumir" os dados, calculando totais e médias sobre um grupo de registros.
+      </p>
+      
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Função</th>
+              <th>Descrição</th>
+              <th>Exemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>de>COUNT(*)</code></td>
+              <td>Conta quantas linhas existem.</td>
+              <td>de>SELECT COUNT(*) FROM PERSONS;</code></td>
+            </tr>
+            <tr>
+              <td>de>SUM(coluna)</code></td>
+              <td>Soma os valores de uma coluna numérica.</td>
+              <td>de>SELECT SUM(POP) FROM COUNTRIES;</code></td>
+            </tr>
+            <tr>
+              <td>de>AVG(coluna)</code></td>
+              <td>Calcula a média aritmética.</td>
+              <td>de>SELECT AVG(LITERACY) FROM COUNTRIES;</code></td>
+            </tr>
+            <tr>
+              <td>de>MAX(coluna)</code></td>
+              <td>Encontra o maior valor.</td>
+              <td>de>SELECT MAX(AREA) FROM COUNTRIES;</code></td>
+            </tr>
+            <tr>
+              <td>de>MIN(coluna)</code></td>
+              <td>Encontra o menor valor.</td>
+              <td>de>SELECT MIN(BDATE) FROM PERSONS;</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </article>
+  

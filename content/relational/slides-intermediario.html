@@ -1,0 +1,132 @@
+<!-- Caminho completo do arquivo: /content/relational/slides-intermediario.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Slides: SQL Intermediário</h1>
+      <p>Material de apoio sobre operadores lógicos, busca de texto e agregações.</p>
+    </header>
+  
+    <div class="carousel" id="slide-carousel-int">
+      
+      <!-- Slide 1: Operadores Lógicos -->
+      <div class="slide active-slide" data-index="0">
+        <div class="slide-content">
+          <h2>Refinando Perguntas com Lógica</h2>
+          <div class="slide-body">
+            <p>Para consultas mais precisas, combinamos condições:</p>
+            <ul class="feature-list">
+              <li><strong>AND (E):</strong> Restritivo. "Quero café COM leite" (tem que ter os dois).</li>
+              <li><strong>OR (OU):</strong> Inclusivo. "Quero café OU chá" (qualquer um serve).</li>
+              <li><strong>NOT (NÃO):</strong> Exclusão. "Tudo, MENOS água".</li>
+            </ul>
+            <div class="code-example" style="margin-top: 1rem;">
+              de>WHERE (Idade > 18) AND (Cidade = 'Rio');</code>
+            </div>
+          </div>
+        </div>
+        <div class="presenter-notes sr-only">
+          Notas: Explique a ordem de precedência. Parênteses são vitais quando misturamos AND e OR na mesma consulta para evitar ambiguidade.
+        </div>
+      </div>
+  
+      <!-- Slide 2: LIKE e Padrões -->
+      <div class="slide" data-index="1" style="display: none;">
+        <div class="slide-content">
+          <h2>Buscando Padrões de Texto (LIKE)</h2>
+          <div class="slide-body">
+            <p>Quando não sabemos o texto exato, usamos "curingas":</p>
+            <table class="table">
+              <tr>
+                <th>Símbolo</th>
+                <th>Significado</th>
+                <th>Exemplo</th>
+              </tr>
+              <tr>
+                <td style="font-size: 1.5rem; text-align: center;">%</td>
+                <td>Qualquer quantidade de caracteres</td>
+                <td>de>'Data%'</code> → Database, DataScience</td>
+              </tr>
+              <tr>
+                <td style="font-size: 1.5rem; text-align: center;">_</td>
+                <td>Exatamente um caractere</td>
+                <td>de>'C_sa'</code> → Casa, Cesa</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="presenter-notes sr-only">
+          Notas: O operador LIKE é case-insensitive em alguns bancos, mas sensitive em outros. No padrão SQL, geralmente diferencia maiúsculas.
+        </div>
+      </div>
+  
+      <!-- Slide 3: Agregações -->
+      <div class="slide" data-index="2" style="display: none;">
+        <div class="slide-content">
+          <h2>Resumindo Dados (Agregações)</h2>
+          <div class="slide-body">
+            <p>Transformam várias linhas em um único número:</p>
+            <div class="card-grid card-grid--two">
+              <div class="card">
+                <strong>COUNT(*)</strong><br>
+                Conta registros.
+              </div>
+              <div class="card">
+                <strong>SUM(col)</strong><br>
+                Soma valores.
+              </div>
+              <div class="card">
+                <strong>AVG(col)</strong><br>
+                Calcula a média.
+              </div>
+              <div class="card">
+                <strong>MAX / MIN</strong><br>
+                Extremos (Maior/Menor).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Controles -->
+      <div class="carousel__controls" style="margin-top: 1rem; border-top: 1px solid #ccc; padding-top: 1rem;">
+        <button class="button button--secondary" onclick="changeSlideInt(-1)">Anterior</button>
+        <span id="slide-indicator-int">Slide 1 de 3</span>
+        <button class="button button--primary" onclick="changeSlideInt(1)">Próximo</button>
+      </div>
+      
+      <div style="margin-top: 1rem;">
+        <button class="button button--secondary" onclick="toggleNotesInt()">Mostrar/Ocultar Notas</button>
+        <div id="visible-notes-int" style="margin-top: 0.5rem; font-style: italic; color: #666; display: none;"></div>
+      </div>
+    </div>
+  
+    <script>
+      let currentSlideInt = 0;
+      const slidesInt = document.querySelectorAll('#slide-carousel-int .slide');
+      const indicatorInt = document.getElementById('slide-indicator-int');
+      const notesBoxInt = document.getElementById('visible-notes-int');
+  
+      function updateSlideInt() {
+        slidesInt.forEach((s, i) => {
+          s.style.display = i === currentSlideInt ? 'block' : 'none';
+        });
+        indicatorInt.textContent = `Slide ${currentSlideInt + 1} de ${slidesInt.length}`;
+        const notes = slidesInt[currentSlideInt].querySelector('.presenter-notes').textContent;
+        notesBoxInt.textContent = notes;
+      }
+  
+      function changeSlideInt(dir) {
+        const newIndex = currentSlideInt + dir;
+        if (newIndex >= 0 && newIndex < slidesInt.length) {
+          currentSlideInt = newIndex;
+          updateSlideInt();
+        }
+      }
+  
+      function toggleNotesInt() {
+        notesBoxInt.style.display = notesBoxInt.style.display === 'none' ? 'block' : 'none';
+        updateSlideInt();
+      }
+    </script>
+  </article>
+  

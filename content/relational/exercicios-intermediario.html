@@ -1,0 +1,108 @@
+<!-- Caminho completo do arquivo: /content/relational/exercicios-intermediario.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Exercícios Práticos: Nível Intermediário</h1>
+      <p>
+        Teste suas habilidades com ordenação, filtros complexos e busca de padrões textuais.
+      </p>
+    </header>
+  
+    <!-- Exercício 1: Ordenação e Limite -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 1: Ranking de População</h2>
+        <span class="badge badge--intermediate">Médio</span>
+      </div>
+      <p>
+        Queremos saber quais são os países mais populosos da tabela de>COUNTRIES</code>.
+      </p>
+      <ul class="task-steps">
+        <li>Selecione o nome do país e a população.</li>
+        <li>Ordene os resultados pela coluna de>POP</code> de forma <strong>descendente</strong> (do maior para o menor).</li>
+      </ul>
+  
+      <div class="sql-exercise">
+        <label for="sql-ex-int-1" class="sql-exercise__label">Escreva sua query:</label>
+        <textarea id="sql-ex-int-1" class="sql-exercise__textarea" spellcheck="false">SELECT COUNTRY, POP FROM COUNTRIES ORDER BY POP DESC</textarea>
+        
+        <div class="sql-exercise__actions">
+          <button class="button button--primary" onclick="runExercise('sql-ex-int-1', 'result-ex-int-1')">Executar</button>
+          <div class="exercise-status">
+            <input type="checkbox" id="check-ex-int-1">
+            <label for="check-ex-int-1">Concluído</label>
+          </div>
+        </div>
+        <div id="result-ex-int-1" class="sql-exercise__result"></div>
+      </div>
+    </section>
+  
+    <!-- Exercício 2: LIKE e Filtro Combinado -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 2: Cientistas Britânicos</h2>
+        <span class="badge badge--intermediate">Médio</span>
+      </div>
+      <p>
+        Na tabela de>PERSONS</code>, a coluna de>JOB</code> usa códigos de uma letra ('S' para Cientista, 'W' para Escritor). A coluna de>COUNTRY</code> indica o país.
+      </p>
+      <p>
+        Sua missão: Listar o nome (NAME) das pessoas que são do Reino Unido ('UK') <strong>E</strong> são Cientistas ('S').
+      </p>
+  
+      <div class="sql-exercise">
+        <label for="sql-ex-int-2" class="sql-exercise__label">Escreva sua query:</label>
+        <textarea id="sql-ex-int-2" class="sql-exercise__textarea" spellcheck="false">SELECT NAME FROM PERSONS WHERE COUNTRY = 'UK' AND JOB = 'S'</textarea>
+        
+        <div class="sql-exercise__actions">
+          <button class="button button--primary" onclick="runExercise('sql-ex-int-2', 'result-ex-int-2')">Executar</button>
+          <div class="exercise-status">
+            <input type="checkbox" id="check-ex-int-2">
+            <label for="check-ex-int-2">Concluído</label>
+          </div>
+        </div>
+        <div id="result-ex-int-2" class="sql-exercise__result"></div>
+      </div>
+    </section>
+  
+    <!-- Exercício 3: Busca por Padrão -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 3: Nomes com 'A'</h2>
+        <span class="badge badge--intermediate">Médio</span>
+      </div>
+      <p>
+        Use o operador de>LIKE</code> para encontrar todas as pessoas cujo nome começa com a letra 'A'.
+        <br><em>Dica: Use o caractere curinga de>%</code> após a letra A.</em>
+      </p>
+  
+      <div class="sql-exercise">
+        <label for="sql-ex-int-3" class="sql-exercise__label">Escreva sua query:</label>
+        <textarea id="sql-ex-int-3" class="sql-exercise__textarea" spellcheck="false">SELECT NAME FROM PERSONS WHERE NAME LIKE 'A%'</textarea>
+        
+        <div class="sql-exercise__actions">
+          <button class="button button--primary" onclick="runExercise('sql-ex-int-3', 'result-ex-int-3')">Executar</button>
+          <div class="exercise-status">
+            <input type="checkbox" id="check-ex-int-3">
+            <label for="check-ex-int-3">Concluído</label>
+          </div>
+        </div>
+        <div id="result-ex-int-3" class="sql-exercise__result"></div>
+      </div>
+    </section>
+  
+    <script>
+      // Reutiliza a função global do playground
+      function runExercise(textareaId, resultId) {
+        const sql = document.getElementById(textareaId).value;
+        const container = document.getElementById(resultId);
+        try {
+          const result = window.SQLPlayground.runQuery(sql);
+          window.SQLPlayground.renderResult(container, result);
+        } catch (error) {
+          container.innerHTML = `<div class="error-message" style="color: #d32f2f; padding: 0.5rem; background: #ffebee;">${error.message}</div>`;
+        }
+      }
+    </script>
+  </article>
+  

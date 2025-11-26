@@ -1,0 +1,77 @@
+<!-- Caminho completo do arquivo: /content/nosql/exercicios-iniciantes.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Exercícios Práticos: Modelagem NoSQL</h1>
+      <p>
+        Bancos NoSQL orientados a documentos usam formatos como JSON. Vamos praticar a "tradução" de uma Tabela Relacional para um Documento JSON.
+      </p>
+    </header>
+  
+    <!-- Exercício 1: De Tabela para JSON -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 1: Estruturando um Documento</h2>
+        <span class="badge badge--beginner">Conceitual</span>
+      </div>
+      <p>
+        Observe a linha abaixo de uma tabela relacional de>USERS</code>:
+      </p>
+      <div class="table-wrapper">
+        <table class="table" style="width: auto;">
+          <thead><tr><th>ID</th><th>Nome</th><th>Skills</th></tr></thead>
+          <tbody><tr><td>1</td><td>Ana</td><td>SQL, Python</td></tr></tbody>
+        </table>
+      </div>
+      <p>
+        No modelo relacional, teríamos problemas com o campo "Skills" (vários valores). No NoSQL, usamos um <strong>Array</strong>.
+        Escreva abaixo como ficaria esse objeto em formato JSON (Chave: Valor).
+      </p>
+  
+      <div class="sql-exercise">
+        <label for="nosql-ex-1" class="sql-exercise__label">Escreva o JSON:</label>
+        <!-- Textarea para JSON, não executável em SQL, mas validável visualmente -->
+        <textarea id="nosql-ex-1" class="sql-exercise__textarea" spellcheck="false">
+  {
+    "id": 1,
+    "nome": "Ana",
+    "skills": ["SQL", "Python"]
+  }</textarea>
+        
+        <div class="sql-exercise__actions">
+          <button class="button button--secondary" onclick="alert('Correto! A capacidade de aninhar listas (Arrays) é uma das maiores vantagens do NoSQL sobre tabelas planas.')">Verificar Conceito</button>
+          <div class="exercise-status">
+            <input type="checkbox" id="check-nosql-1">
+            <label for="check-nosql-1">Concluído</label>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Exercício 2: Flexibilidade de Schema -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 2: Schema Dinâmico</h2>
+        <span class="badge badge--beginner">Conceitual</span>
+      </div>
+      <p>
+        Imagine que você tem um cadastro de produtos. Alguns produtos têm "Voltagem" (Eletrônicos), outros têm "Tamanho" (Roupas).
+      </p>
+      <p>
+        Em SQL, você teria muitas colunas com de>NULL</code>. Em NoSQL, cada documento tem apenas os campos que precisa.
+      </p>
+      <p>
+        <strong>Tarefa:</strong> Crie mentalmente dois objetos JSON representando uma "Camiseta" e uma "Geladeira". Note que eles não precisam ter as mesmas chaves.
+      </p>
+      
+      <div class="sql-exercise">
+        <div class="sql-exercise__actions">
+          <div class="exercise-status">
+            <input type="checkbox" id="check-nosql-2">
+            <label for="check-nosql-2">Entendi a diferença de flexibilidade</label>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+  

@@ -1,0 +1,109 @@
+<!-- Caminho completo do arquivo: /content/nosql/slides-iniciantes.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Slides: O Mundo NoSQL</h1>
+      <p>Apresentação sobre a mudança de paradigma: de dados estruturados para flexíveis.</p>
+    </header>
+  
+    <div class="carousel" id="slide-carousel-nosql-beg">
+      
+      <!-- Slide 1: A Explosão dos Dados -->
+      <div class="slide active-slide" data-index="0">
+        <div class="slide-content">
+          <h2>O Cenário Moderno (Big Data)</h2>
+          <div class="slide-body">
+            <p>Até os anos 2000, a maioria dos dados eram transacionais (Bancos, Vendas).</p>
+            <p>Hoje, lidamos com os <strong>3 V's</strong>:</p>
+            <div class="card-grid card-grid--three">
+              <div class="card" style="text-align: center; background: #e3f2fd;">
+                <h3>Volume</h3>
+                <p>Dados demais para um único servidor.</p>
+              </div>
+              <div class="card" style="text-align: center; background: #e8f5e9;">
+                <h3>Velocidade</h3>
+                <p>Dados chegando em milissegundos.</p>
+              </div>
+              <div class="card" style="text-align: center; background: #fff3e0;">
+                <h3>Variedade</h3>
+                <p>Texto, áudio, vídeo, JSON.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="presenter-notes sr-only">
+          Notas: Enfatize a "Variedade". SQL sofre para guardar um tweet, um log de servidor e uma foto na mesma tabela. NoSQL facilita isso.
+        </div>
+      </div>
+  
+      <!-- Slide 2: Escalar Verticalmente vs Horizontalmente -->
+      <div class="slide" data-index="1" style="display: none;">
+        <div class="slide-content">
+          <h2>O Problema da Escala</h2>
+          <div class="slide-body">
+            <div class="table-wrapper">
+              <table class="table">
+                <tr>
+                  <th>SQL (Vertical)</th>
+                  <th>NoSQL (Horizontal)</th>
+                </tr>
+                <tr>
+                  <td>Para aguentar mais dados, preciso de um computador <strong>mais potente</strong> (Mais CPU/RAM).</td>
+                  <td>Para aguentar mais dados, adiciono <strong>mais computadores</strong> simples (Clusters).</td>
+                </tr>
+                <tr>
+                  <td>Custo cresce exponencialmente.</td>
+                  <td>Custo cresce linearmente.</td>
+                </tr>
+              </table>
+            </div>
+            <p style="text-align: center; margin-top: 1rem; font-weight: bold;">
+              NoSQL nasceu para rodar em clusters distribuídos.
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Controles -->
+      <div class="carousel__controls" style="margin-top: 1rem; border-top: 1px solid #ccc; padding-top: 1rem;">
+        <button class="button button--secondary" onclick="changeSlideNSB(-1)">Anterior</button>
+        <span id="slide-indicator-nsb">Slide 1 de 2</span>
+        <button class="button button--primary" onclick="changeSlideNSB(1)">Próximo</button>
+      </div>
+  
+      <div style="margin-top: 1rem;">
+        <button class="button button--secondary" onclick="toggleNotesNSB()">Mostrar/Ocultar Notas</button>
+        <div id="visible-notes-nsb" style="margin-top: 0.5rem; font-style: italic; color: #666; display: none;"></div>
+      </div>
+    </div>
+  
+    <script>
+      let currentSlideNSB = 0;
+      const slidesNSB = document.querySelectorAll('#slide-carousel-nosql-beg .slide');
+      const indicatorNSB = document.getElementById('slide-indicator-nsb');
+      const notesBoxNSB = document.getElementById('visible-notes-nsb');
+  
+      function updateSlideNSB() {
+        slidesNSB.forEach((s, i) => {
+          s.style.display = i === currentSlideNSB ? 'block' : 'none';
+        });
+        indicatorNSB.textContent = `Slide ${currentSlideNSB + 1} de ${slidesNSB.length}`;
+        const notes = slidesNSB[currentSlideNSB].querySelector('.presenter-notes').textContent;
+        notesBoxNSB.textContent = notes;
+      }
+  
+      function changeSlideNSB(dir) {
+        const newIndex = currentSlideNSB + dir;
+        if (newIndex >= 0 && newIndex < slidesNSB.length) {
+          currentSlideNSB = newIndex;
+          updateSlideNSB();
+        }
+      }
+  
+      function toggleNotesNSB() {
+        notesBoxNSB.style.display = notesBoxNSB.style.display === 'none' ? 'block' : 'none';
+        updateSlideNSB();
+      }
+    </script>
+  </article>
+  

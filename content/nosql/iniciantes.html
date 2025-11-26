@@ -1,0 +1,83 @@
+<!-- Caminho completo do arquivo: /content/nosql/iniciantes.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Introdução ao NoSQL e a Evolução dos Dados</h1>
+      <p class="lead">
+        Por que o SQL não foi suficiente? Entenda o surgimento do "Not Only SQL", o Big Data e a necessidade de flexibilidade no mundo moderno.
+      </p>
+    </header>
+  
+    <!-- Seção 1: A Limitação do Modelo Relacional -->
+    <section class="topic-block">
+      <h2>1. Quando as Tabelas não são Suficientes</h2>
+      <p>
+        O modelo relacional (SQL) foi criado nos anos 70, quando o armazenamento era caro e os dados eram altamente estruturados (tabelas de contabilidade, inventário).
+      </p>
+      <p>
+        Porém, com a explosão da internet e do <strong>Big Data</strong>, surgiram novos desafios descritos na evolução dos dados:
+      </p>
+      <ul class="feature-list">
+        <li><strong>Volume:</strong> Petabytes de dados gerados por segundo.</li>
+        <li><strong>Variedade:</strong> Dados não estruturados (posts de redes sociais, vídeos, logs de sensores, imagens) que não cabem bem em linhas e colunas rígidas.</li>
+        <li><strong>Velocidade:</strong> Necessidade de ingestão de dados em tempo real.</li>
+      </ul>
+    </section>
+  
+    <!-- Seção 2: O que é NoSQL? -->
+    <section class="topic-block">
+      <h2>2. O Conceito NoSQL (Not Only SQL)</h2>
+      <p>
+        NoSQL não significa "Não SQL", mas sim "Não Somente SQL". É uma classe de bancos de dados desenhada para <strong>escalabilidade horizontal</strong> e <strong>flexibilidade de esquema</strong>.
+      </p>
+      
+      <h3>Diferença Fundamental: Esquema (Schema)</h3>
+      <div class="card-grid card-grid--two">
+        <div class="card">
+          <h4 class="card__title">SQL (Relacional)</h4>
+          <p><strong>Schema-on-Write:</strong> Você deve definir a estrutura (colunas e tipos) <em>antes</em> de salvar os dados. É rígido.</p>
+        </div>
+        <div class="card">
+          <h4 class="card__title">NoSQL (Não Relacional)</h4>
+          <p><strong>Schema-on-Read:</strong> Você pode salvar dados de qualquer formato. A estrutura é interpretada apenas na hora de ler. É flexível.</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Seção 3: Tipos Comuns de NoSQL -->
+    <section class="topic-block">
+      <h2>3. Categorias de Bancos NoSQL</h2>
+      <p>
+        Enquanto o SQL é quase sempre baseado em tabelas, o NoSQL assume várias formas dependendo do problema:
+      </p>
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Estrutura</th>
+              <th>Exemplo de Uso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Documentos (Document Store)</strong></td>
+              <td>Dados salvos como JSON/XML (hierárquicos).</td>
+              <td>Catálogos de e-commerce, perfis de usuários. (Ex: MongoDB).</td>
+            </tr>
+            <tr>
+              <td><strong>Chave-Valor (Key-Value)</strong></td>
+              <td>Dicionário simples. Super rápido.</td>
+              <td>Sessões de login, carrinhos de compra, cache. (Ex: Redis).</td>
+            </tr>
+            <tr>
+              <td><strong>Colunar (Wide-Column)</strong></td>
+              <td>Tabelas gigantescas e esparsas.</td>
+              <td>Big Data, Analytics em larga escala. (Ex: Cassandra).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </article>
+  

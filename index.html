@@ -93,225 +93,47 @@
   -->
   <div class="app-layout">
     <!-- Navegação lateral com estrutura pedagógica solicitada -->
-    <nav id="side-nav" class="side-nav" aria-label="Navegação principal">
-      <!--
-        Cada item do menu usa data-section e data-level para que o JS saiba
-        qual arquivo carregar de /content/ ao ser clicado.
-      -->
+    <nav id="side-nav" class="side-nav">
       <ul class="side-nav__list">
-        <!-- Banco de Dados Relacional -->
+        <!-- HOME -->
         <li class="side-nav__group">
-          <button class="side-nav__group-title" type="button">
-            <span data-i18n="menu_relational">Banco de Dados Relacional</span>
+          <button class="side-nav__link" data-section="home" data-level="index">
+            <span data-i18n="menu_home">Início</span>
           </button>
+        </li>
+
+        <!-- RELACIONAL -->
+        <li class="side-nav__group">
+          <div class="side-nav__group-title" data-i18n="menu_relational">Banco de Dados Relacional</div>
           <ul class="side-nav__sublist">
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="relational"
-                data-level="iniciantes"
-              >
-                <span data-i18n="menu_relational_beginner">Iniciantes</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="relational"
-                data-level="exercicios-iniciantes"
-              >
-                <span data-i18n="menu_relational_beginner_exercises">Iniciantes - Exercícios</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="relational"
-                data-level="slides-iniciantes"
-              >
-                <span data-i18n="menu_relational_beginner_slides">Iniciantes - Slides</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="relational"
-                data-level="intermediario"
-              >
-                <span data-i18n="menu_relational_intermediate">Intermediário</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="relational"
-                data-level="exercicios-intermediario"
-              >
-                <span data-i18n="menu_relational_intermediate_exercises">Intermediário - Exercícios</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="relational"
-                data-level="slides-intermediario"
-              >
-                <span data-i18n="menu_relational_intermediate_slides">Intermediário - Slides</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="relational"
-                data-level="avancado"
-              >
-                <span data-i18n="menu_relational_advanced">Avançado</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="relational"
-                data-level="exercicios-avancado"
-              >
-                <span data-i18n="menu_relational_advanced_exercises">Avançado - Exercícios</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="relational"
-                data-level="slides-avancado"
-              >
-                <span data-i18n="menu_relational_advanced_slides">Avançado - Slides</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="relational"
-                data-level="projetos-praticos"
-              >
-                <span data-i18n="menu_relational_projects">Projetos práticos</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="relational"
-                data-level="aplicacoes-reais"
-              >
-                <span data-i18n="menu_relational_realworld">Aplicações reais</span>
-              </button>
-            </li>
+            <li><button class="side-nav__link" data-section="relational" data-level="iniciantes"><span data-i18n="menu_relational_beginner">Iniciantes</span></button></li>
+            <li><button class="side-nav__link" data-section="relational" data-level="manipulacao-dados"><span data-i18n="menu_relational_dml">Manipulação (DML)</span></button></li>
+            <li><button class="side-nav__link" data-section="relational" data-level="objetos-banco"><span data-i18n="menu_relational_ddl">Objetos (DDL)</span></button></li>
+            <li><button class="side-nav__link" data-section="relational" data-level="intermediario"><span data-i18n="menu_relational_intermediate">Intermediário</span></button></li>
+            <li><button class="side-nav__link" data-section="relational" data-level="avancado"><span data-i18n="menu_relational_advanced">Avançado</span></button></li>
+            <li><button class="side-nav__link" data-section="relational" data-level="exercicios-iniciantes"><span data-i18n="menu_relational_beginner_exercises">Exercícios (Iniciantes)</span></button></li>
+            <li><button class="side-nav__link" data-section="relational" data-level="exercicios-intermediario"><span data-i18n="menu_relational_intermediate_exercises">Exercícios (Médio)</span></button></li>
+            <li><button class="side-nav__link" data-section="relational" data-level="exercicios-avancado"><span data-i18n="menu_relational_advanced_exercises">Exercícios (Avançado)</span></button></li>
+            <li><button class="side-nav__link" data-section="relational" data-level="projetos-praticos"><span data-i18n="menu_relational_projects">Projetos Práticos</span></button></li>
+            <li><button class="side-nav__link" data-section="relational" data-level="aplicacoes-reais"><span data-i18n="menu_relational_realworld">Aplicações Reais</span></button></li>
           </ul>
         </li>
 
-        <!-- Banco de Dados Não Relacional -->
+        <!-- NOSQL -->
         <li class="side-nav__group">
-          <button class="side-nav__group-title" type="button">
-            <span data-i18n="menu_nosql">Banco de Dados Não Relacional</span>
-          </button>
+          <div class="side-nav__group-title" data-i18n="menu_nosql">Banco de Dados Não Relacional</div>
           <ul class="side-nav__sublist">
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="nosql"
-                data-level="iniciantes"
-              >
-                <span data-i18n="menu_nosql_beginner">Iniciantes</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="nosql"
-                data-level="exercicios-iniciantes"
-              >
-                <span data-i18n="menu_nosql_beginner_exercises">Iniciantes - Exercícios</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="nosql"
-                data-level="slides-iniciantes"
-              >
-                <span data-i18n="menu_nosql_beginner_slides">Iniciantes - Slides</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="nosql"
-                data-level="intermediario"
-              >
-                <span data-i18n="menu_nosql_intermediate">Intermediário</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="nosql"
-                data-level="exercicios-intermediario"
-              >
-                <span data-i18n="menu_nosql_intermediate_exercises">Intermediário - Exercícios</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="nosql"
-                data-level="slides-intermediario"
-              >
-                <span data-i18n="menu_nosql_intermediate_slides">Intermediário - Slides</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="nosql"
-                data-level="avancado"
-              >
-                <span data-i18n="menu_nosql_advanced">Avançado</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="nosql"
-                data-level="exercicios-avancado"
-              >
-                <span data-i18n="menu_nosql_advanced_exercises">Avançado - Exercícios</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="nosql"
-                data-level="slides-avancado"
-              >
-                <span data-i18n="menu_nosql_advanced_slides">Avançado - Slides</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="nosql"
-                data-level="projetos-praticos"
-              >
-                <span data-i18n="menu_nosql_projects">Projetos práticos</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="side-nav__link"
-                data-section="nosql"
-                data-level="aplicacoes-reais"
-              >
-                <span data-i18n="menu_nosql_realworld">Aplicações reais</span>
-              </button>
-            </li>
+            <li><button class="side-nav__link" data-section="nosql" data-level="iniciantes"><span data-i18n="menu_nosql_beginner">Iniciantes</span></button></li>
+            <li><button class="side-nav__link" data-section="nosql" data-level="intermediario"><span data-i18n="menu_nosql_intermediate">Intermediário</span></button></li>
+            <li><button class="side-nav__link" data-section="nosql" data-level="avancado"><span data-i18n="menu_nosql_advanced">Avançado</span></button></li>
+            <li><button class="side-nav__link" data-section="nosql" data-level="exercicios-iniciantes"><span data-i18n="menu_nosql_beginner_exercises">Exercícios (Iniciantes)</span></button></li>
+            <li><button class="side-nav__link" data-section="nosql" data-level="exercicios-intermediario"><span data-i18n="menu_nosql_intermediate_exercises">Exercícios (Médio)</span></button></li>
+            <li><button class="side-nav__link" data-section="nosql" data-level="exercicios-avancado"><span data-i18n="menu_nosql_advanced_exercises">Exercícios (Avançado)</span></button></li>
+            <li><button class="side-nav__link" data-section="nosql" data-level="slides-iniciantes"><span data-i18n="menu_nosql_beginner_slides">Slides (Iniciantes)</span></button></li>
+            <li><button class="side-nav__link" data-section="nosql" data-level="slides-intermediario"><span data-i18n="menu_nosql_intermediate_slides">Slides (Médio)</span></button></li>
+            <li><button class="side-nav__link" data-section="nosql" data-level="slides-avancado"><span data-i18n="menu_nosql_advanced_slides">Slides (Avançado)</span></button></li>
+            <li><button class="side-nav__link" data-section="nosql" data-level="projetos-praticos"><span data-i18n="menu_nosql_projects">Projetos Práticos</span></button></li>
+            <li><button class="side-nav__link" data-section="nosql" data-level="aplicacoes-reais"><span data-i18n="menu_nosql_realworld">Aplicações Reais</span></button></li>
           </ul>
         </li>
       </ul>

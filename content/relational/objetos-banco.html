@@ -1,0 +1,42 @@
+<!-- Caminho completo: /content/relational/objetos-banco.html -->
+<article class="content-section">
+    <header class="content-header">
+      <h1>Definição de Dados (DDL)</h1>
+      <p class="lead">Criando a estrutura do banco: Tabelas, Chaves e Visões.</p>
+    </header>
+  
+    <section class="topic-block">
+      <h2>1. Criando Tabelas (CREATE TABLE)</h2>
+      <p>Define o nome da tabela e o tipo de cada coluna.</p>
+      <div class="code-example">
+        <pre>de>CREATE TABLE PRODUTOS (
+      ID INT PRIMARY KEY,
+      NOME VARCHAR(100) NOT NULL,
+      PRECO DECIMAL(10, 2),
+      CRIADO_EM DATE
+  );</code></pre>
+      </div>
+    </section>
+  
+    <section class="topic-block">
+      <h2>2. Restrições (Constraints)</h2>
+      <div class="table-wrapper">
+        <table class="table">
+          <thead><tr><th>Constraint</th><th>Descrição</th></tr></thead>
+          <tbody>
+            <tr><td><strong>PRIMARY KEY</strong></td><td>Identificador único. Não aceita nulos.</td></tr>
+            <tr><td><strong>FOREIGN KEY</strong></td><td>Garante que o valor existe em outra tabela (relação).</td></tr>
+            <tr><td><strong>UNIQUE</strong></td><td>Impede valores duplicados na coluna.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  
+    <section class="topic-block">
+      <h2>3. Views (Visões)</h2>
+      <p>Uma "tabela virtual" baseada em uma consulta SELECT.</p>
+      <pre>de>CREATE VIEW CLIENTES_VIP AS
+  SELECT * FROM CLIENTES WHERE GASTO > 1000;</code></pre>
+    </section>
+  </article>
+  

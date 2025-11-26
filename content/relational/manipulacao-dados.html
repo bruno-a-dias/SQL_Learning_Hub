@@ -1,0 +1,42 @@
+<!-- Caminho completo: /content/relational/manipulacao-dados.html -->
+<article class="content-section">
+    <header class="content-header">
+      <h1>Manipulação de Dados (DML)</h1>
+      <p class="lead">Aprenda a inserir, alterar e remover registros do banco de dados com segurança.</p>
+    </header>
+  
+    <section class="topic-block">
+      <h2>1. Inserindo Dados (INSERT)</h2>
+      <p>O comando de>INSERT INTO</code> é usado para adicionar novas linhas.</p>
+      <div class="code-example">
+        <pre>de>INSERT INTO PERSONS (ID, NAME, COUNTRY, JOB)
+  VALUES (10, 'Santos Dumont', 'Brazil', 'E');</code></pre>
+      </div>
+      <div class="alert-box">
+        <strong>Dica:</strong> Se você listar as colunas explicitamente, não precisa fornecer valores para todas (as outras ficarão como NULL ou valor padrão).
+      </div>
+    </section>
+  
+    <section class="topic-block">
+      <h2>2. Atualizando Dados (UPDATE)</h2>
+      <p>Use para modificar registros existentes.</p>
+      <div class="code-example">
+        <pre>de>UPDATE PERSONS
+  SET JOB = 'S'
+  WHERE NAME = 'Santos Dumont';</code></pre>
+      </div>
+      <div class="alert-box" style="background-color: #ffebee; border-color: #c62828; color: #b71c1c;">
+        <strong>PERIGO:</strong> Sempre use a cláusula de>WHERE</code>. Se esquecer, todas as linhas da tabela serão alteradas!
+      </div>
+    </section>
+  
+    <section class="topic-block">
+      <h2>3. Removendo Dados (DELETE)</h2>
+      <p>Use para apagar registros.</p>
+      <div class="code-example">
+        <pre>de>DELETE FROM PERSONS
+  WHERE ID = 10;</code></pre>
+      </div>
+    </section>
+  </article>
+  

@@ -1,0 +1,68 @@
+<article class="content-section">
+  <header class="content-header">
+    <h1>Relational Database Fundamentals</h1>
+    <p class="lead">
+      From tables to basic queries. Master the essential commands: SELECT, WHERE, ORDER BY, and DISTINCT.
+    </p>
+  </header>
+
+  <section class="topic-block">
+    <h2>1. What is a Relational Database?</h2>
+    <p>
+      Based on relational algebra, this type of database organizes data into <strong>tables</strong> (relations). Each table has a unique name and consists of:
+    </p>
+    <ul class="feature-list">
+      <li><strong>Columns (Fields):</strong> Vertical structure defining the data type (e.g., Name, Birth Date, Salary).</li>
+      <li><strong>Rows (Records):</strong> Horizontal structure containing the actual data of an entity.</li>
+    </ul>
+    <p>
+      The main advantage is integrity: you cannot insert text into a column defined to store dates. This ensures data quality for future analysis.
+    </p>
+  </section>
+
+  <section class="topic-block">
+    <h2>2. Retrieving Data (SELECT)</h2>
+    <p>
+      The de>SELECT</code> command is for reading. It does not alter data, it only presents it.
+    </p>
+    <div class="code-example">
+      <h3>Selecting Specific Columns</h3>
+      <p>It is good practice to list only the columns you need, rather than fetching the entire table.</p>
+      <pre>de>SELECT NAME, JOB FROM PERSONS;</code></pre>
+    </div>
+    <div class="code-example">
+      <h3>Selecting All (*)</h3>
+      <p>The asterisk retrieves all available columns.</p>
+      <pre>de>SELECT * FROM COUNTRIES;</code></pre>
+    </div>
+  </section>
+
+  <section class="topic-block">
+    <h2>3. Filtering Records (WHERE)</h2>
+    <p>
+      The de>WHERE</code> clause restricts the returned rows. The database checks the condition for each row; if True, the row appears.
+    </p>
+    <table class="table">
+      <thead>
+        <tr><th>Data Type</th><th>How to use in WHERE</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Numbers</strong></td><td>Directly, no quotes.</td><td>de>WHERE POP > 1000000</code></td></tr>
+        <tr><td><strong>Text (Strings)</strong></td><td>Inside single quotes.</td><td>de>WHERE COUNTRY = 'Brazil'</code></td></tr>
+        <tr><td><strong>Dates</strong></td><td>Inside single quotes (YYYY-MM-DD).</td><td>de>WHERE BDATE > '1990-01-01'</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="topic-block">
+    <h2>4. Sorting Results (ORDER BY)</h2>
+    <p>
+      By default, row order is not guaranteed. To organize output, use de>ORDER BY</code>. It must always be the <strong>last</strong> clause.
+    </p>
+    <ul>
+      <li><strong>ASC (Ascending):</strong> Default. Smallest to largest (A-Z, 0-9).</li>
+      <li><strong>DESC (Descending):</strong> Largest to smallest (Z-A, 9-0).</li>
+    </ul>
+    <pre>de>SELECT COUNTRY, POP FROM COUNTRIES ORDER BY POP DESC;</code></pre>
+  </section>
+</article>

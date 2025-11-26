@@ -1,0 +1,126 @@
+<!-- Caminho completo do arquivo: /content/relational/slides-iniciantes.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Slides: Introdução ao SQL (Modo Apresentação)</h1>
+      <p>
+        Material de apoio para acompanhamento em sala de aula ou revisão rápida.
+        Use os botões para navegar entre os tópicos.
+      </p>
+    </header>
+  
+    <div class="carousel" id="slide-carousel">
+      <!-- Slide 1: Capa -->
+      <div class="slide active-slide" data-index="0">
+        <div class="slide-content">
+          <h2>Fundamentos de SQL</h2>
+          <h3>Módulo Iniciante</h3>
+          <div class="slide-body">
+            <p>Tópicos desta aula:</p>
+            <ul>
+              <li>O conceito de Banco de Dados Relacional</li>
+              <li>Tabelas, Linhas e Colunas</li>
+              <li>Comando SELECT e FROM</li>
+              <li>Filtragem básica com WHERE</li>
+            </ul>
+          </div>
+        </div>
+        <div class="presenter-notes sr-only">
+          Notas: Comece explicando que SQL é uma linguagem padrão. Ressalte que não é uma linguagem de programação comum (como Python ou Java), mas uma linguagem de consulta declarativa.
+        </div>
+      </div>
+  
+      <!-- Slide 2: Anatomia de uma Tabela -->
+      <div class="slide" data-index="1" style="display: none;">
+        <div class="slide-content">
+          <h2>Anatomia de uma Tabela</h2>
+          <div class="slide-body">
+            <p>Uma tabela é como uma planilha rigorosa:</p>
+            <table class="table" style="margin-top: 1rem;">
+              <thead>
+                <tr>
+                  <th style="background: #e3f2fd;">Coluna (Atributo)</th>
+                  <th style="background: #e3f2fd;">Coluna (Atributo)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Dado (Linha 1)</td>
+                  <td>Dado (Linha 1)</td>
+                </tr>
+                <tr>
+                  <td>Dado (Linha 2)</td>
+                  <td>Dado (Linha 2)</td>
+                </tr>
+              </tbody>
+            </table>
+            <p><strong>Regra de Ouro:</strong> Cada coluna tem um tipo de dado fixo (só números, só texto, só datas).</p>
+          </div>
+        </div>
+        <div class="presenter-notes sr-only">
+          Notas: Use a analogia da planilha do Excel, mas enfatize a tipagem forte. Uma coluna de 'Idade' não aceita escrever 'Vinte anos' por extenso se for numérica.
+        </div>
+      </div>
+  
+      <!-- Slide 3: Sintaxe SQL -->
+      <div class="slide" data-index="2" style="display: none;">
+        <div class="slide-content">
+          <h2>A Frase SQL Básica</h2>
+          <div class="slide-body">
+            <div class="code-large" style="font-size: 1.5rem; background: #333; color: #fff; padding: 1rem; border-radius: 8px;">
+              SELECT <span style="color: #4fc3f7;">colunas</span><br>
+              FROM <span style="color: #ffb74d;">tabela</span><br>
+              WHERE <span style="color: #81c784;">condição</span>;
+            </div>
+            <p style="margin-top: 1rem;">
+              A ordem importa! O computador lê: "Selecione X, da tabela Y, onde Z é verdade".
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Controles do Slide -->
+      <div class="carousel__controls" style="margin-top: 1rem; border-top: 1px solid #ccc; padding-top: 1rem;">
+        <button class="button button--secondary" onclick="changeSlide(-1)">Anterior</button>
+        <span id="slide-indicator">Slide 1 de 3</span>
+        <button class="button button--primary" onclick="changeSlide(1)">Próximo</button>
+      </div>
+      
+      <div style="margin-top: 1rem;">
+        <button class="button button--secondary" onclick="toggleNotes()">Mostrar/Ocultar Notas do Professor</button>
+        <div id="visible-notes" style="margin-top: 0.5rem; font-style: italic; color: #666; display: none;"></div>
+      </div>
+    </div>
+  
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slide');
+      const indicator = document.getElementById('slide-indicator');
+      const notesBox = document.getElementById('visible-notes');
+  
+      function updateSlide() {
+        slides.forEach((s, i) => {
+          s.style.display = i === currentSlide ? 'block' : 'none';
+        });
+        indicator.textContent = `Slide ${currentSlide + 1} de ${slides.length}`;
+        
+        // Atualiza notas se estiverem visíveis
+        const notes = slides[currentSlide].querySelector('.presenter-notes').textContent;
+        notesBox.textContent = notes;
+      }
+  
+      function changeSlide(dir) {
+        const newIndex = currentSlide + dir;
+        if (newIndex >= 0 && newIndex < slides.length) {
+          currentSlide = newIndex;
+          updateSlide();
+        }
+      }
+  
+      function toggleNotes() {
+        notesBox.style.display = notesBox.style.display === 'none' ? 'block' : 'none';
+        updateSlide(); // Garante que o texto esteja atualizado
+      }
+    </script>
+  </article>
+  

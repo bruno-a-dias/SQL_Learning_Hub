@@ -1,0 +1,140 @@
+<!-- Caminho completo do arquivo: /content/relational/iniciantes.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Fundamentos de Banco de Dados Relacional e SQL</h1>
+      <p class="lead">
+        Uma introdução completa sobre como dados são organizados em tabelas e como realizar suas primeiras consultas usando a linguagem SQL.
+      </p>
+    </header>
+  
+    <!-- Seção 1: O que é um Banco de Dados Relacional? -->
+    <section class="topic-block">
+      <h2>1. O que é um Banco de Dados Relacional?</h2>
+      <p>
+        Imagine um banco de dados relacional como uma coleção organizada de tabelas que se relacionam entre si. Diferente de uma planilha solta, aqui a estrutura é rígida e previsível, garantindo que os dados sejam consistentes.
+      </p>
+      <p>
+        A estrutura básica é composta por:
+      </p>
+      <ul class="feature-list">
+        <li><strong>Tabelas (Tables):</strong> Onde os dados vivem. Pense nelas como "pastas" para categorias específicas de informações (ex: <em>Clientes</em>, <em>Pedidos</em>).</li>
+        <li><strong>Colunas (Columns):</strong> Definem os atributos que armazenamos. Por exemplo, numa tabela de <em>Pessoas</em>, teríamos colunas para <em>Nome</em>, <em>Idade</em> e <em>Cidade</em>.</li>
+        <li><strong>Linhas (Rows):</strong> Cada linha é um registro único. Se a tabela é <em>Pessoas</em>, uma linha representa uma pessoa específica.</li>
+      </ul>
+      
+      <div class="card">
+        <h3 class="card__title">Exemplo Visual: Tabela COUNTRIES</h3>
+        <p class="card__subtitle">Esta tabela armazena dados sobre países. Observe as colunas e linhas.</p>
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>COUNTRY (Texto)</th>
+                <th>POP (Número)</th>
+                <th>AREA (Número)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>China</td>
+                <td>1398000000</td>
+                <td>9596960</td>
+              </tr>
+              <tr>
+                <td>India</td>
+                <td>1366000000</td>
+                <td>3287263</td>
+              </tr>
+              <tr>
+                <td>USA</td>
+                <td>331000000</td>
+                <td>9833520</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Seção 2: Introdução ao SELECT -->
+    <section class="topic-block">
+      <h2>2. Sua Primeira Consulta: O Comando SELECT</h2>
+      <p>
+        A linguagem SQL (Structured Query Language) é o padrão para "conversar" com esses bancos. O verbo mais importante que você vai aprender é o de>SELECT</code>.
+      </p>
+      <p>
+        Ele serve para <strong>ler</strong> dados. Uma consulta SQL básica tem duas partes obrigatórias:
+      </p>
+      <ol>
+        <li><strong>SELECT:</strong> O que você quer ver? (Quais colunas?)</li>
+        <li><strong>FROM:</strong> De onde você quer pegar? (Qual tabela?)</li>
+      </ol>
+  
+      <div class="code-example">
+        <h3>Sintaxe Básica</h3>
+        <pre>de>SELECT coluna1, coluna2
+  FROM tabela;</code></pre>
+      </div>
+  
+      <p>
+        Se você quiser ver <strong>todas</strong> as colunas de uma tabela, usamos o símbolo asterisco (de>*</code>). Cuidado: em bancos de dados reais com milhões de linhas, isso pode ser lento! Mas para aprender, é excelente.
+      </p>
+  
+      <div class="card code-card">
+        <div class="code-header">Exemplo Prático</div>
+        <div class="code-body">
+          <p>Para ver todos os dados da tabela de Países:</p>
+          <pre>de>SELECT * FROM COUNTRIES;</code></pre>
+          <p>Para ver apenas o nome e a população:</p>
+          <pre>de>SELECT COUNTRY, POP FROM COUNTRIES;</code></pre>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Seção 3: Filtrando com WHERE -->
+    <section class="topic-block">
+      <h2>3. Filtrando Resultados com WHERE</h2>
+      <p>
+        Raramente queremos ver o banco inteiro. Geralmente, precisamos de respostas específicas, como "Quais países falam Inglês?" ou "Quem nasceu antes de 1990?". É aqui que entra a cláusula de>WHERE</code>.
+      </p>
+      <p>
+        O de>WHERE</code> funciona como um filtro. Ele olha linha por linha e decide: "Esta linha atende à condição?". Se sim, ela aparece no resultado.
+      </p>
+  
+      <div class="table-wrapper">
+        <table class="table">
+          aption>Operadores Comuns no WHERE</caption>
+          <thead>
+            <tr>
+              <th>Operador</th>
+              <th>Significado</th>
+              <th>Exemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>de>=</code></td>
+              <td>Igual a</td>
+              <td>de>WHERE COUNTRY = 'USA'</code></td>
+            </tr>
+            <tr>
+              <td>de>></code></td>
+              <td>Maior que</td>
+              <td>de>WHERE POP > 1000000</code></td>
+            </tr>
+            <tr>
+              <td>de><</code></td>
+              <td>Menor que</td>
+              <td>de>WHERE AREA < 500</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="alert-box">
+        <strong>Dica Importante:</strong> Textos em SQL devem estar sempre entre aspas simples (de>'Texto'</code>). Números não precisam de aspas.
+      </div>
+    </section>
+  </article>
+  

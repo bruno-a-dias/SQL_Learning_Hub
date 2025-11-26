@@ -1,0 +1,93 @@
+<!-- Caminho completo do arquivo: /content/relational/exercicios-iniciantes.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Exercícios Práticos: Nível Iniciante</h1>
+      <p>
+        Coloque em prática o que você aprendeu sobre SELECT, FROM e WHERE. 
+        Use o editor abaixo para escrever suas queries e executá-las em tempo real no navegador.
+      </p>
+    </header>
+  
+    <!-- Exercício 1 -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 1: Explorando a Tabela de Países</h2>
+        <span class="badge badge--beginner">Fácil</span>
+      </div>
+      <p>
+        O banco de dados já possui uma tabela chamada de>COUNTRIES</code> carregada. 
+        Sua tarefa é listar <strong>todas</strong> as colunas disponíveis nessa tabela para entender quais dados temos à disposição.
+      </p>
+      <ul class="task-steps">
+        <li>Utilize o comando de>SELECT</code>.</li>
+        <li>Use o asterisco de>*</code> para selecionar tudo.</li>
+        <li>Não esqueça da cláusula de>FROM COUNTRIES</code>.</li>
+      </ul>
+  
+      <div class="sql-exercise">
+        <label for="sql-ex-1" class="sql-exercise__label">Escreva sua query SQL:</label>
+        <textarea id="sql-ex-1" class="sql-exercise__textarea" spellcheck="false">SELECT * FROM COUNTRIES</textarea>
+        
+        <div class="sql-exercise__actions">
+          <button class="button button--primary" onclick="runExercise('sql-ex-1', 'result-ex-1')">
+            Executar Query
+          </button>
+          <div class="exercise-status">
+            <input type="checkbox" id="check-ex-1">
+            <label for="check-ex-1">Marcar como concluído</label>
+          </div>
+        </div>
+  
+        <div id="result-ex-1" class="sql-exercise__result" aria-live="polite"></div>
+      </div>
+    </section>
+  
+    <!-- Exercício 2 -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 2: Filtrando Pessoas dos EUA</h2>
+        <span class="badge badge--beginner">Fácil</span>
+      </div>
+      <p>
+        Temos também uma tabela chamada de>PERSONS</code>. Queremos encontrar apenas as pessoas que vivem nos Estados Unidos.
+      </p>
+      <p>
+        <strong>Dica:</strong> A coluna de país se chama de>COUNTRY</code> e o valor para Estados Unidos está gravado como de>'USA'</code>. Lembre-se das aspas simples!
+      </p>
+  
+      <div class="sql-exercise">
+        <label for="sql-ex-2" class="sql-exercise__label">Escreva sua query SQL:</label>
+        <textarea id="sql-ex-2" class="sql-exercise__textarea" spellcheck="false">SELECT NAME, COUNTRY FROM PERSONS WHERE COUNTRY = 'USA'</textarea>
+        
+        <div class="sql-exercise__actions">
+          <button class="button button--primary" onclick="runExercise('sql-ex-2', 'result-ex-2')">
+            Executar Query
+          </button>
+          <div class="exercise-status">
+            <input type="checkbox" id="check-ex-2">
+            <label for="check-ex-2">Marcar como concluído</label>
+          </div>
+        </div>
+  
+        <div id="result-ex-2" class="sql-exercise__result" aria-live="polite"></div>
+      </div>
+    </section>
+  
+    <!-- Script local para vincular o HTML ao SQLPlayground global -->
+    <script>
+      function runExercise(textareaId, resultId) {
+        const sql = document.getElementById(textareaId).value;
+        const container = document.getElementById(resultId);
+        
+        try {
+          // Chama a função global definida em /js/sql-playground.js
+          const result = window.SQLPlayground.runQuery(sql);
+          window.SQLPlayground.renderResult(container, result);
+        } catch (error) {
+          container.innerHTML = `<div class="error-message" style="color: #d32f2f; padding: 0.5rem; background: #ffebee; border-radius: 4px;">Erro: ${error.message}</div>`;
+        }
+      }
+    </script>
+  </article>
+  

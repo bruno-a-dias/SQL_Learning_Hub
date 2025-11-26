@@ -1,0 +1,96 @@
+<!-- Caminho completo do arquivo: /content/nosql/slides-intermediario.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Slides: Teoria de Sistemas Distribuídos</h1>
+      <p>CAP, ACID e BASE visualizados.</p>
+    </header>
+  
+    <div class="carousel" id="slide-carousel-nosql-int">
+      
+      <!-- Slide 1: CAP Visual -->
+      <div class="slide active-slide" data-index="0">
+        <div class="slide-content">
+          <h2>O Triângulo das Escolhas (CAP)</h2>
+          <div class="slide-body" style="text-align: center;">
+            <div style="display: inline-block; position: relative; width: 300px; height: 250px; margin-top: 20px;">
+              <!-- Representação CSS simples do triângulo -->
+              <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-weight: bold; background: #e3f2fd; padding: 5px;">Consistency</div>
+              <div style="position: absolute; bottom: 0; left: 0; font-weight: bold; background: #e8f5e9; padding: 5px;">Availability</div>
+              <div style="position: absolute; bottom: 0; right: 0; font-weight: bold; background: #fff3e0; padding: 5px;">Partition Tol.</div>
+              
+              <svg width="300" height="250" style="position: absolute; top:0; left:0; z-index:-1;">
+                <polygon points="150,30 20,220 280,220" style="fill:none;stroke:#333;stroke-width:2" />
+              </svg>
+              
+              <div style="position: absolute; top: 120px; left: 80px; font-size: 0.8rem;">SQL (CA/CP)</div>
+              <div style="position: absolute; bottom: 20px; left: 130px; font-size: 0.8rem;">NoSQL (AP)</div>
+            </div>
+            <p>Você só pode escolher 2 vértices!</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Slide 2: ACID vs BASE -->
+      <div class="slide" data-index="1" style="display: none;">
+        <div class="slide-content">
+          <h2>Filosofias Opostas</h2>
+          <div class="slide-body">
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ACID (SQL)</th>
+                    <th>BASE (NoSQL)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Foco na <strong>correção</strong> absoluta.</td>
+                    <td>Foco na <strong>velocidade</strong> e disponibilidade.</td>
+                  </tr>
+                  <tr>
+                    <td>Pessimista (trava dados para editar).</td>
+                    <td>Otimista (aceita e resolve conflitos depois).</td>
+                  </tr>
+                  <tr>
+                    <td>Ex: Banco, Inventário.</td>
+                    <td>Ex: Likes, Carrinho, Chat.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Controles -->
+      <div class="carousel__controls" style="margin-top: 1rem; border-top: 1px solid #ccc; padding-top: 1rem;">
+        <button class="button button--secondary" onclick="changeSlideNSI(-1)">Anterior</button>
+        <span id="slide-indicator-nsi">Slide 1 de 2</span>
+        <button class="button button--primary" onclick="changeSlideNSI(1)">Próximo</button>
+      </div>
+    </div>
+  
+    <script>
+      let currentSlideNSI = 0;
+      const slidesNSI = document.querySelectorAll('#slide-carousel-nosql-int .slide');
+      const indicatorNSI = document.getElementById('slide-indicator-nsi');
+  
+      function updateSlideNSI() {
+        slidesNSI.forEach((s, i) => {
+          s.style.display = i === currentSlideNSI ? 'block' : 'none';
+        });
+        indicatorNSI.textContent = `Slide ${currentSlideNSI + 1} de ${slidesNSI.length}`;
+      }
+  
+      function changeSlideNSI(dir) {
+        const newIndex = currentSlideNSI + dir;
+        if (newIndex >= 0 && newIndex < slidesNSI.length) {
+          currentSlideNSI = newIndex;
+          updateSlideNSI();
+        }
+      }
+    </script>
+  </article>
+  

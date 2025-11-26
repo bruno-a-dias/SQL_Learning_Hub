@@ -1,0 +1,64 @@
+<!-- Caminho completo do arquivo: /content/nosql/intermediario.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Teoria NoSQL: CAP e Consistência</h1>
+      <p class="lead">
+        Para ganhar escala infinita, é preciso abrir mão de alguma coisa. Entenda o "Teorema CAP" e por que seus dados nem sempre estão consistentes no milissegundo exato.
+      </p>
+    </header>
+  
+    <!-- Seção 1: O Teorema CAP -->
+    <section class="topic-block">
+      <h2>1. O Teorema CAP</h2>
+      <p>
+        Proposto por Eric Brewer, este teorema afirma que um sistema distribuído só pode garantir simultaneamente duas das três propriedades:
+      </p>
+      <div class="card-grid card-grid--three">
+        <div class="card">
+          <h3 class="card__title">C - Consistency</h3>
+          <p><strong>Consistência:</strong> Todos os nós veem os mesmos dados ao mesmo tempo. (Obrigatório em bancos bancários).</p>
+        </div>
+        <div class="card">
+          <h3 class="card__title">A - Availability</h3>
+          <p><strong>Disponibilidade:</strong> O sistema sempre responde, mesmo que alguns nós falhem.</p>
+        </div>
+        <div class="card">
+          <h3 class="card__title">P - Partition Tolerance</h3>
+          <p><strong>Tolerância a Partição:</strong> O sistema continua funcionando mesmo que a rede entre os nós caia.</p>
+        </div>
+      </div>
+      <p>
+        <strong>A Regra:</strong> Em sistemas distribuídos (Nuvem), a partição (P) é inevitável. Então, temos que escolher entre <strong>CP</strong> (Consistência acima de tudo, como bancos SQL tradicionais) ou <strong>AP</strong> (Disponibilidade acima de tudo, como redes sociais/NoSQL).
+      </p>
+    </section>
+  
+    <!-- Seção 2: ACID vs BASE -->
+    <section class="topic-block">
+      <h2>2. De ACID para BASE</h2>
+      <p>
+        Enquanto o SQL luta para ser ACID (Atômico, Consistente, Isolado, Durável), o NoSQL abraça a filosofia <strong>BASE</strong>:
+      </p>
+      <ul class="feature-list">
+        <li><strong>B - Basically Available:</strong> O sistema funciona a maior parte do tempo.</li>
+        <li><strong>S - Soft state:</strong> O estado do sistema pode mudar sem input externo (devido à sincronização interna).</li>
+        <li><strong>E - Eventual Consistency:</strong> Se o sistema parar de receber inputs, eventualmente todos os dados ficarão iguais.</li>
+      </ul>
+      <div class="alert-box">
+        <strong>Exemplo Real:</strong> Quando você posta no Instagram, seu amigo pode demorar alguns segundos para ver (Consistência Eventual). Isso é aceitável para uma rede social, mas inaceitável para um saldo bancário.
+      </div>
+    </section>
+  
+    <!-- Seção 3: Tipos de Consistência -->
+    <section class="topic-block">
+      <h2>3. Modelos de Consistência</h2>
+      <p>
+        NoSQL permite ajustar isso.
+      </p>
+      <ul>
+        <li><strong>Strong Consistency:</strong> Leitura sempre retorna a escrita mais recente (mais lento).</li>
+        <li><strong>Eventual Consistency:</strong> Leitura pode retornar dados antigos por um breve momento (muito rápido e escalável).</li>
+      </ul>
+    </section>
+  </article>
+  

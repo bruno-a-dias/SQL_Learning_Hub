@@ -1,0 +1,71 @@
+<!-- Caminho completo do arquivo: /content/nosql/exercicios-intermediario.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Exercícios: Modelagem e Desnormalização</h1>
+      <p>
+        Em SQL, evitamos duplicidade. Em NoSQL, amamos duplicidade se isso tornar a leitura mais rápida. Vamos praticar essa mudança de mentalidade.
+      </p>
+    </header>
+  
+    <!-- Exercício 1: Embedding (Aninhamento) -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 1: Blog Post + Comentários</h2>
+        <span class="badge badge--intermediate">Modelagem</span>
+      </div>
+      <p>
+        <strong>Cenário SQL:</strong> Tabela de>POSTS</code> e tabela de>COMENTARIOS</code> ligadas por ID. Precisa de JOIN para ler.
+      </p>
+      <p>
+        <strong>Cenário NoSQL:</strong> Queremos exibir o post e os comentários de uma vez só, super rápido.
+        <br><em>Tarefa: Crie a estrutura JSON onde os comentários estão DENTRO do post.</em>
+      </p>
+  
+      <div class="sql-exercise">
+        <label class="sql-exercise__label">Estrutura JSON sugerida:</label>
+        <textarea class="sql-exercise__textarea" spellcheck="false">
+  {
+    "post_id": 101,
+    "titulo": "Aprendendo NoSQL",
+    "comentarios": [
+      { "user": "Joao", "texto": "Muito bom!" },
+      { "user": "Maria", "texto": "Explique mais sobre CAP." }
+    ]
+  }</textarea>
+        <div class="sql-exercise__actions">
+          <button class="button button--secondary" onclick="alert('Isso se chama Embedding. É ótimo para leitura rápida, mas ruim se você precisar editar o nome do usuário Joao em todos os lugares.')">Validar Lógica</button>
+          <div class="exercise-status">
+            <input type="checkbox" id="check-nosql-int-1">
+            <label for="check-nosql-int-1">Entendi Embedding</label>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Exercício 2: Decisão de Arquitetura -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 2: Escolha o Banco</h2>
+        <span class="badge badge--intermediate">Arquitetura</span>
+      </div>
+      <p>
+        Você está criando um sistema financeiro de transferência de dinheiro entre bancos.
+        Qual modelo você deve priorizar segundo o Teorema CAP?
+      </p>
+      <form style="margin-top: 1rem;">
+        <div>
+          <input type="radio" name="cap-choice" id="cp-choice">
+          <label for="cp-choice"><strong>CP (Consistência e Tolerância a Partição):</strong> Se a rede cair, o sistema trava mas não deixa saldo errado.</label>
+        </div>
+        <div style="margin-top: 0.5rem;">
+          <input type="radio" name="cap-choice" id="ap-choice">
+          <label for="ap-choice"><strong>AP (Disponibilidade e Tolerância a Partição):</strong> O sistema sempre aceita a transferência, mesmo que não saiba o saldo atual.</label>
+        </div>
+      </form>
+      <div class="sql-exercise__actions" style="margin-top: 1rem;">
+          <button class="button button--secondary" onclick="alert('Para dinheiro, sempre CP! É melhor o sistema estar fora do ar do que duplicar dinheiro.')">Verificar Resposta</button>
+      </div>
+    </section>
+  </article>
+  

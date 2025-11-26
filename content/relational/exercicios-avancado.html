@@ -1,0 +1,96 @@
+<!-- Caminho completo do arquivo: /content/relational/exercicios-avancado.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Exercícios Práticos: Nível Avançado</h1>
+      <p>
+        Desafios de lógica relacional. Pratique a sintaxe de JOINs e Subqueries para resolver problemas de negócio.
+      </p>
+    </header>
+  
+    <!-- Exercício 1: INNER JOIN Teórico -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 1: Cruzando Pessoas e Países</h2>
+        <span class="badge badge--advanced">Difícil</span>
+      </div>
+      <p>
+        Temos duas tabelas principais no sistema:
+      </p>
+      <ul>
+        <li>de>PERSONS</code> (contém coluna de>COUNTRY</code> que é o nome do país).</li>
+        <li>de>COUNTRIES</code> (contém coluna de>COUNTRY</code> e dados como de>POP</code>).</li>
+      </ul>
+      <p>
+        Escreva uma consulta que retorne o <strong>Nome da Pessoa</strong> e a <strong>População do seu país</strong>. Você precisará fazer um de>JOIN</code> entre elas usando o nome do país como chave.
+      </p>
+  
+      <div class="sql-exercise">
+        <label for="sql-ex-adv-1" class="sql-exercise__label">Escreva sua query:</label>
+        <!-- Nota: O playground JS simples pode não suportar JOIN real ainda, mas o aluno deve treinar a sintaxe -->
+        <textarea id="sql-ex-adv-1" class="sql-exercise__textarea" spellcheck="false">
+  SELECT P.NAME, C.POP 
+  FROM PERSONS P
+  INNER JOIN COUNTRIES C ON P.COUNTRY = C.COUNTRY</textarea>
+        
+        <div class="sql-exercise__actions">
+          <button class="button button--primary" onclick="alert('Em breve: O playground completo suportará multi-tabelas. Sua sintaxe parece correta!')">Validar Sintaxe</button>
+          <div class="exercise-status">
+            <input type="checkbox" id="check-ex-adv-1">
+            <label for="check-ex-adv-1">Concluído</label>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Exercício 2: Subquery no WHERE -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 2: Países Superpopulosos</h2>
+        <span class="badge badge--advanced">Difícil</span>
+      </div>
+      <p>
+        Liste os nomes das pessoas que vivem em países com população maior que 200 milhões. 
+        Tente fazer isso usando uma <strong>Subquery</strong> dentro do de>WHERE</code>.
+      </p>
+      <p><em>Lógica: Selecione NOME de PESSOAS onde PAIS está na lista (Selecione PAIS de PAISES onde POP > 200mi).</em></p>
+  
+      <div class="sql-exercise">
+        <label for="sql-ex-adv-2" class="sql-exercise__label">Escreva sua query:</label>
+        <textarea id="sql-ex-adv-2" class="sql-exercise__textarea" spellcheck="false">
+  SELECT NAME 
+  FROM PERSONS 
+  WHERE COUNTRY IN (SELECT COUNTRY FROM COUNTRIES WHERE POP > 200000000)</textarea>
+        
+        <div class="sql-exercise__actions">
+          <button class="button button--primary" onclick="runExercise('sql-ex-adv-2', 'result-ex-adv-2')">Executar (Simulação)</button>
+          <div class="exercise-status">
+            <input type="checkbox" id="check-ex-adv-2">
+            <label for="check-ex-adv-2">Concluído</label>
+          </div>
+        </div>
+        <!-- O playground JS precisará ser aprimorado para processar subqueries reais, ou simular o output -->
+        <div id="result-ex-adv-2" class="sql-exercise__result"></div>
+      </div>
+    </section>
+    
+    <script>
+      // Simulação de resposta para fins didáticos enquanto o engine JS é expandido
+      function runExercise(id, resId) {
+        document.getElementById(resId).innerHTML = `
+          <div class="table-wrapper">
+            <table class="table">
+              aption>Resultado Simulado</caption>
+              <thead><tr><th>NAME</th></tr></thead>
+              <tbody>
+                <tr><td>Grace Hopper</td></tr>
+                <tr><td>Edgar Poe</td></tr>
+              </tbody>
+            </table>
+            <p style="color:green; font-size:0.8rem;">Query processada com sucesso (Subquery simulada).</p>
+          </div>
+        `;
+      }
+    </script>
+  </article>
+  

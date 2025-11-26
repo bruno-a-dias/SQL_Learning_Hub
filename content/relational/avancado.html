@@ -1,0 +1,125 @@
+<!-- Caminho completo do arquivo: /content/relational/avancado.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>SQL Avançado: Joins, Subqueries e Análise</h1>
+      <p class="lead">
+        Domine a arte de conectar dados dispersos. Aprenda a cruzar tabelas com precisão e a realizar cálculos analíticos complexos sem planilhas.
+      </p>
+    </header>
+  
+    <!-- Seção 1: Joins (Cruzamento de Tabelas) -->
+    <section class="topic-block">
+      <h2>1. Consultas Multi-Tabela (JOINS)</h2>
+      <p>
+        Em bancos relacionais, os dados são normalizados (separados) para evitar redundância. Para reconstruir a informação completa, usamos de>JOIN</code>. O conceito central é a "chave de ligação" (geralmente ID).
+      </p>
+      <p>
+        Baseado na teoria de conjuntos, temos os principais tipos:
+      </p>
+  
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Tipo de Join</th>
+              <th>Descrição Técnica</th>
+              <th>Analogia de Negócio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>INNER JOIN</strong></td>
+              <td>Retorna apenas linhas onde há correspondência em <strong>ambas</strong> as tabelas.</td>
+              <td>"Quero ver apenas os pedidos que já têm um cliente associado." (Interseção)</td>
+            </tr>
+            <tr>
+              <td><strong>LEFT JOIN</strong></td>
+              <td>Retorna <strong>todas</strong> as linhas da tabela da esquerda, e as correspondentes da direita (ou NULL se não houver).</td>
+              <td>"Liste todos os clientes, mesmo aqueles que nunca fizeram um pedido."</td>
+            </tr>
+            <tr>
+              <td><strong>RIGHT JOIN</strong></td>
+              <td>Inverso do LEFT. Prioriza a tabela da direita.</td>
+              <td>Pouco usado na prática; geralmente convertido para LEFT JOIN para legibilidade.</td>
+            </tr>
+            <tr>
+              <td><strong>FULL OUTER JOIN</strong></td>
+              <td>Retorna linhas quando há correspondência em <strong>uma das</strong> tabelas.</td>
+              <td>"Quero ver todos os clientes e todos os pedidos, independente de estarem ligados."</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="card code-card">
+        <div class="code-header">Sintaxe Padrão</div>
+        <div class="code-body">
+          <pre>de>SELECT Clientes.Nome, Pedidos.Data
+  FROM Clientes
+  INNER JOIN Pedidos ON Clientes.ID = Pedidos.ClienteID;</code></pre>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Seção 2: Subqueries (Consultas Aninhadas) -->
+    <section class="topic-block">
+      <h2>2. Consultas Dentro de Consultas (Subqueries)</h2>
+      <p>
+        Uma subquery é uma consulta aninhada dentro de outra (seja no SELECT, FROM ou WHERE). Elas resolvem problemas que exigem múltiplos passos lógicos numa única execução.
+      </p>
+      
+      <h3>Tipos de Subquery:</h3>
+      <ul class="feature-list">
+        <li><strong>Scalar Subquery:</strong> Retorna um único valor (uma célula). Ex: <em>"Qual produto custa mais que a média?"</em>.</li>
+        <li><strong>Multi-row Subquery:</strong> Retorna uma lista de valores. Usada frequentemente com o operador de>IN</code>.</li>
+        <li><strong>Correlated Subquery:</strong> A subquery depende de valores da query externa. É processada linha a linha (menos performática, mas poderosa).</li>
+      </ul>
+  
+      <div class="code-example">
+        <h3>Exemplo: Quem ganha acima da média?</h3>
+        <pre>de>SELECT Nome, Salario
+  FROM Funcionarios
+  WHERE Salario > (SELECT AVG(Salario) FROM Funcionarios);</code></pre>
+        <p><small>O banco primeiro calcula a média (parênteses) e depois usa esse número para filtrar.</small></p>
+      </div>
+    </section>
+  
+    <!-- Seção 3: Window Functions (Funções de Janela) -->
+    <section class="topic-block">
+      <h2>3. Análise de Dados com Window Functions</h2>
+      <p>
+        Diferente do de>GROUP BY</code> que colapsa as linhas, as <strong>Window Functions</strong> permitem calcular agregações mantendo as linhas individuais. Essencial para análise de tendências, rankings e comparações temporais.
+      </p>
+      
+      <div class="card-grid card-grid--two">
+        <div class="card">
+          <h3 class="card__title">ROW_NUMBER()</h3>
+          <p>Atribui um número sequencial único para cada linha dentro de uma partição.</p>
+        </div>
+        <div class="card">
+          <h3 class="card__title">RANK() / DENSE_RANK()</h3>
+          <p>Cria rankings (ex: "Top 3 vendedores"). Lida com empates de formas diferentes.</p>
+        </div>
+        <div class="card">
+          <h3 class="card__title">LAG()</h3>
+          <p>Acessa o valor da linha <strong>anterior</strong>. Vital para calcular crescimento (Delta) mês a mês.</p>
+        </div>
+        <div class="card">
+          <h3 class="card__title">LEAD()</h3>
+          <p>Acessa o valor da linha <strong>seguinte</strong>.</p>
+        </div>
+      </div>
+  
+      <div class="code-example">
+        <h3>Exemplo: Ranking de Salários por Departamento</h3>
+        <pre>de>SELECT 
+    Nome, 
+    Depto, 
+    Salario,
+    RANK() OVER (PARTITION BY Depto ORDER BY Salario DESC) as Ranking
+  FROM Funcionarios;</code></pre>
+      </div>
+    </section>
+  </article>
+  

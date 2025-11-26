@@ -1,0 +1,76 @@
+<!-- Caminho completo do arquivo: /content/relational/projetos-praticos.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Projetos Práticos para Portfólio</h1>
+      <p class="lead">
+        A melhor forma de aprender é construir. Abaixo estão três cenários do mundo real extraídos de casos de uso de análise de dados.
+      </p>
+    </header>
+  
+    <div class="card-grid card-grid--two">
+      
+      <!-- Projeto 1: E-commerce -->
+      <div class="card">
+        <h3 class="card__title">1. Análise de Coortes (Cohort Analysis)</h3>
+        <p class="card__subtitle">Cenário: E-commerce / Varejo</p>
+        <p>
+          <strong>Objetivo:</strong> Entender a retenção de clientes.
+        </p>
+        <p><strong>Desafio SQL:</strong></p>
+        <ul>
+          <li>Agrupar usuários pela data da primeira compra (safra).</li>
+          <li>Calcular quantos desses usuários voltaram a comprar nos meses seguintes (Mês 1, Mês 2...).</li>
+          <li>Usar de>DATEDIFF</code> e de>GROUP BY</code>.</li>
+        </ul>
+        <div class="alert-box">
+          <em>Dica: Use CTEs para separar a lógica de "Primeira Compra" da lógica de "Compras Recorrentes".</em>
+        </div>
+      </div>
+  
+      <!-- Projeto 2: Marketing -->
+      <div class="card">
+        <h3 class="card__title">2. Funil de Conversão de Marketing</h3>
+        <p class="card__subtitle">Cenário: Marketing Digital</p>
+        <p>
+          <strong>Objetivo:</strong> Identificar onde perdemos usuários.
+        </p>
+        <p><strong>Desafio SQL:</strong></p>
+        <ul>
+          <li>Tabela de <em>Impressões</em> → <em>Cliques</em> → <em>Cadastros</em> → <em>Compras</em>.</li>
+          <li>Calcular a taxa de conversão (%) entre cada etapa.</li>
+          <li>Identificar qual campanha teve o melhor ROI (Retorno sobre Investimento).</li>
+        </ul>
+      </div>
+  
+      <!-- Projeto 3: RH -->
+      <div class="card">
+        <h3 class="card__title">3. Análise de Rotatividade (Churn)</h3>
+        <p class="card__subtitle">Cenário: Recursos Humanos ou Assinaturas</p>
+        <p>
+          <strong>Objetivo:</strong> Prever cancelamentos ou saídas.
+        </p>
+        <p><strong>Desafio SQL:</strong></p>
+        <ul>
+          <li>Classificar usuários como "Ativos", "Em Risco" (sem atividade há 30 dias) e "Churned".</li>
+          <li>Usar de>CASE WHEN</code> para criar essas categorias dinamicamente.</li>
+          <li>Calcular a taxa de churn mensal.</li>
+        </ul>
+      </div>
+  
+    </div>
+  
+    <section class="topic-block">
+      <h2>Como documentar seu projeto?</h2>
+      <p>
+        Ao subir esses projetos no GitHub (como sugerido no PDF "SQL for Data Analysis"), siga esta estrutura:
+      </p>
+      <ol>
+        <li><strong>Problema de Negócio:</strong> O que você quer resolver?</li>
+        <li><strong>A Query:</strong> O código SQL bem formatado e comentado.</li>
+        <li><strong>O Insight:</strong> O que os dados disseram? (Ex: "A retenção cai 40% no terceiro mês").</li>
+        <li><strong>A Recomendação:</strong> O que fazer com isso? (Ex: "Criar campanha de reativação no dia 80").</li>
+      </ol>
+    </section>
+  </article>
+  

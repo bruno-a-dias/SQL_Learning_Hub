@@ -1,0 +1,123 @@
+<!-- Caminho completo do arquivo: /content/relational/slides-avancado.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Slides: SQL Avançado</h1>
+      <p>Conceitos visuais de Joins, Subqueries e Análise de Dados.</p>
+    </header>
+  
+    <div class="carousel" id="slide-carousel-adv">
+      
+      <!-- Slide 1: Diagrama de Joins -->
+      <div class="slide active-slide" data-index="0">
+        <div class="slide-content">
+          <h2>Entendendo JOINs (Teoria dos Conjuntos)</h2>
+          <div class="slide-body">
+            <div class="card-grid card-grid--two">
+              <div class="card" style="text-align: center;">
+                <h3>INNER JOIN</h3>
+                <div style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                  <!-- Representação visual simples com CSS -->
+                  <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #333; margin-right: -15px; background: transparent;"></div>
+                  <div style="width: 20px; height: 40px; background: #4fc3f7; z-index: 1;"></div>
+                  <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #333; margin-left: -15px; background: transparent;"></div>
+                </div>
+                <p>Apenas a interseção.</p>
+              </div>
+              <div class="card" style="text-align: center;">
+                <h3>LEFT JOIN</h3>
+                <div style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                  <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #333; background: #4fc3f7; margin-right: -15px;"></div>
+                  <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #333; margin-left: -15px; background: transparent;"></div>
+                </div>
+                <p>Tudo da esquerda + coincidências.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="presenter-notes sr-only">
+          Notas: Explique que o diagrama de Venn é uma simplificação, mas útil. O importante é a chave estrangeira (Foreign Key) que liga as tabelas.
+        </div>
+      </div>
+  
+      <!-- Slide 2: Lógica de Execução -->
+      <div class="slide" data-index="1" style="display: none;">
+        <div class="slide-content">
+          <h2>A Ordem de Execução do SQL</h2>
+          <div class="slide-body">
+            <p>O SQL não lê na ordem que escrevemos. A ordem lógica é:</p>
+            <ol style="font-size: 1.1rem; line-height: 1.8;">
+              <li><strong>FROM / JOIN:</strong> Identifica e cruza as tabelas.</li>
+              <li><strong>WHERE:</strong> Filtra as linhas base.</li>
+              <li><strong>GROUP BY:</strong> Agrupa os dados.</li>
+              <li><strong>HAVING:</strong> Filtra os grupos.</li>
+              <li><strong>SELECT:</strong> Escolhe as colunas e roda Window Functions.</li>
+              <li><strong>ORDER BY:</strong> Ordena o resultado final.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="presenter-notes sr-only">
+          Notas: Isso explica por que não podemos usar um 'Alias' criado no SELECT dentro do WHERE. O WHERE acontece antes!
+        </div>
+      </div>
+  
+      <!-- Slide 3: Window Functions -->
+      <div class="slide" data-index="2" style="display: none;">
+        <div class="slide-content">
+          <h2>Poder Analítico: Window Functions</h2>
+          <div class="slide-body">
+            <p>Permitem olhar para "vizinhança" da linha atual sem agrupar.</p>
+            <pre style="font-size: 0.9rem;">de>LAG(Vendas) OVER (ORDER BY Data)</code></pre>
+            <p>Fundamental para criar relatórios de:</p>
+            <ul class="feature-list">
+              <li>Crescimento Mês a Mês (MoM)</li>
+              <li>Médias Móveis (ex: Média dos últimos 7 dias)</li>
+              <li>Rankings cumulativos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Controles -->
+      <div class="carousel__controls" style="margin-top: 1rem; border-top: 1px solid #ccc; padding-top: 1rem;">
+        <button class="button button--secondary" onclick="changeSlideAdv(-1)">Anterior</button>
+        <span id="slide-indicator-adv">Slide 1 de 3</span>
+        <button class="button button--primary" onclick="changeSlideAdv(1)">Próximo</button>
+      </div>
+      
+      <div style="margin-top: 1rem;">
+        <button class="button button--secondary" onclick="toggleNotesAdv()">Mostrar/Ocultar Notas</button>
+        <div id="visible-notes-adv" style="margin-top: 0.5rem; font-style: italic; color: #666; display: none;"></div>
+      </div>
+    </div>
+  
+    <script>
+      let currentSlideAdv = 0;
+      const slidesAdv = document.querySelectorAll('#slide-carousel-adv .slide');
+      const indicatorAdv = document.getElementById('slide-indicator-adv');
+      const notesBoxAdv = document.getElementById('visible-notes-adv');
+  
+      function updateSlideAdv() {
+        slidesAdv.forEach((s, i) => {
+          s.style.display = i === currentSlideAdv ? 'block' : 'none';
+        });
+        indicatorAdv.textContent = `Slide ${currentSlideAdv + 1} de ${slidesAdv.length}`;
+        const notes = slidesAdv[currentSlideAdv].querySelector('.presenter-notes').textContent;
+        notesBoxAdv.textContent = notes;
+      }
+  
+      function changeSlideAdv(dir) {
+        const newIndex = currentSlideAdv + dir;
+        if (newIndex >= 0 && newIndex < slidesAdv.length) {
+          currentSlideAdv = newIndex;
+          updateSlideAdv();
+        }
+      }
+  
+      function toggleNotesAdv() {
+        notesBoxAdv.style.display = notesBoxAdv.style.display === 'none' ? 'block' : 'none';
+        updateSlideAdv();
+      }
+    </script>
+  </article>
+  

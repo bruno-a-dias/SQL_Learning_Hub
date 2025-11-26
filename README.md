@@ -270,9 +270,9 @@ Toda contribuição que melhore o ambiente educacional é bem-vinda!
 
 Desenvolvido por **Bruno** com amor pela educação em tecnologia.
 
-- 📧 Email: bruno@example.com (substitua pelo seu)
-- 💼 LinkedIn: [seu-perfil](https://linkedin.com)
-- 🐙 GitHub: [seu-usuario](https://github.com)
+- 📧 Email: badmask84@gmail.com
+- 💼 LinkedIn: [bruno-a-dias](https://www.linkedin.com/in/bruno-a-dias/)
+- 🐙 GitHub: [bruno-a-dias](https://github.com/bruno-a-dias/)
 
 ---
 

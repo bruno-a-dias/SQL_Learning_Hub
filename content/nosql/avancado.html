@@ -1,0 +1,51 @@
+<!-- Caminho completo do arquivo: /content/nosql/avancado.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Arquitetura de Big Data: Lakes vs Warehouses</h1>
+      <p class="lead">
+        Como as grandes empresas organizam petabytes de dados? A convergência entre o mundo relacional e o não relacional na nuvem.
+      </p>
+    </header>
+  
+    <!-- Seção 1: Data Warehouse (O Passado Modernizado) -->
+    <section class="topic-block">
+      <h2>1. Data Warehouse (Armazém de Dados)</h2>
+      <p>
+        É um banco de dados relacional gigante, otimizado para leitura (Analytics).
+      </p>
+      <ul class="feature-list">
+        <li><strong>Estrutura:</strong> Altamente estruturado (SQL). Usa esquema "Estrela" ou "Snowflake".</li>
+        <li><strong>Processo:</strong> ETL (Extract, Transform, Load). Você limpa o dado <em>antes</em> de guardar.</li>
+        <li><strong>Exemplos:</strong> Amazon Redshift, Snowflake, Google BigQuery (modo nativo).</li>
+      </ul>
+    </section>
+  
+    <!-- Seção 2: Data Lake (O Presente do Big Data) -->
+    <section class="topic-block">
+      <h2>2. Data Lake (Lago de Dados)</h2>
+      <p>
+        Um repositório centralizado que permite armazenar todos os dados estruturados e não estruturados em qualquer escala.
+      </p>
+      <ul class="feature-list">
+        <li><strong>Estrutura:</strong> Sem estrutura definida. Aceita CSV, JSON, Imagens, Logs, Parquet.</li>
+        <li><strong>Processo:</strong> ELT (Extract, Load, Transform). Você guarda tudo bruto e limpa apenas quando for usar.</li>
+        <li><strong>Tecnologia:</strong> Hadoop (HDFS), Amazon S3, Azure Data Lake.</li>
+      </ul>
+    </section>
+  
+    <!-- Seção 3: SQL sobre NoSQL (Query Engines) -->
+    <section class="topic-block">
+      <h2>3. O Melhor dos Dois Mundos: SQL Engines</h2>
+      <p>
+        Hoje, não precisamos escolher. Ferramentas modernas permitem escrever SQL padrão para consultar arquivos JSON ou CSV jogados num Data Lake, sem precisar importar para um banco.
+      </p>
+      <p>
+        Isso é mencionado no material como "Cloud-Based SQL Platforms" (Capítulo 30). Ferramentas como <strong>AWS Athena</strong> ou <strong>Presto</strong> leem arquivos onde eles estão, aplicam esquema na leitura (Schema-on-Read) e retornam tabelas.
+      </p>
+      <div class="alert-box">
+        <strong>Conceito Chave:</strong> Separar Computação (Query Engine) do Armazenamento (Data Lake). Isso permite escalar cada um independentemente.
+      </div>
+    </section>
+  </article>
+  

@@ -1,0 +1,116 @@
+<!-- Caminho completo do arquivo: /content/nosql/slides-avancado.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Slides: Arquitetura de Big Data</h1>
+      <p>Apresentação visual sobre Data Lakes, Warehouses e a Convergência Moderna.</p>
+    </header>
+  
+    <div class="carousel" id="slide-carousel-nosql-adv">
+      
+      <!-- Slide 1: Evolution Diagram -->
+      <div class="slide active-slide" data-index="0">
+        <div class="slide-content">
+          <h2>A Evolução do Armazenamento</h2>
+          <div class="slide-body">
+            <div class="card-grid card-grid--three">
+              <div class="card" style="background: transparent; color: white; border: 1px solid #555;">
+                <h3>1. RDBMS</h3>
+                <p>Anos 80-90</p>
+                <p style="font-size: 0.8rem;">Um servidor central. Tabelas rígidas.</p>
+              </div>
+              <div class="card" style="background: transparent; color: white; border: 1px solid #555;">
+                <h3>2. Hadoop/NoSQL</h3>
+                <p>Anos 2000-10</p>
+                <p style="font-size: 0.8rem;">Clusters commodity. Esquema flexível.</p>
+              </div>
+              <div class="card" style="background: transparent; color: white; border: 1px solid #fff;">
+                <h3>3. Cloud Native</h3>
+                <p>Hoje</p>
+                <p style="font-size: 0.8rem;">Separação de Compute & Storage. (Snowflake, BigQuery).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Slide 2: Lake vs Warehouse -->
+      <div class="slide" data-index="1" style="display: none;">
+        <div class="slide-content">
+          <h2>Lake vs Warehouse</h2>
+          <div class="slide-body">
+            <table class="table" style="color: #333; background: rgba(255,255,255,0.9);">
+              <thead>
+                <tr>
+                  <th>Característica</th>
+                  <th>Data Warehouse</th>
+                  <th>Data Lake</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Dados</strong></td>
+                  <td>Estruturados, Limpos</td>
+                  <td>Brutos (Raw), Variados</td>
+                </tr>
+                <tr>
+                  <td><strong>Custo</strong></td>
+                  <td>Alto (Armazenamento rápido)</td>
+                  <td>Baixo (Object Storage S3)</td>
+                </tr>
+                <tr>
+                  <td><strong>Usuário</strong></td>
+                  <td>Analista de BI</td>
+                  <td>Cientista de Dados</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Slide 3: Modern Architecture -->
+      <div class="slide" data-index="2" style="display: none;">
+        <div class="slide-content">
+          <h2>Arquitetura "Lakehouse"</h2>
+          <div class="slide-body">
+            <p>O novo padrão da indústria:</p>
+            <ul class="feature-list" style="text-align: left; margin-top: 2rem;">
+              <li>Armazene TUDO no Lake (barato).</li>
+              <li>Use Engines SQL (Athena, Presto) para consultar direto do Lake.</li>
+              <li>Mova para o Warehouse apenas os dados "Ouro" (KPIs críticos).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Controles -->
+      <div class="carousel__controls">
+        <button class="button button--secondary" onclick="changeSlideNSA(-1)">Anterior</button>
+        <span id="slide-indicator-nsa">Slide 1 de 3</span>
+        <button class="button button--primary" onclick="changeSlideNSA(1)">Próximo</button>
+      </div>
+    </div>
+  
+    <script>
+      let currentSlideNSA = 0;
+      const slidesNSA = document.querySelectorAll('#slide-carousel-nosql-adv .slide');
+      const indicatorNSA = document.getElementById('slide-indicator-nsa');
+  
+      function updateSlideNSA() {
+        slidesNSA.forEach((s, i) => {
+          s.style.display = i === currentSlideNSA ? 'block' : 'none';
+        });
+        indicatorNSA.textContent = `Slide ${currentSlideNSA + 1} de ${slidesNSA.length}`;
+      }
+  
+      function changeSlideNSA(dir) {
+        const newIndex = currentSlideNSA + dir;
+        if (newIndex >= 0 && newIndex < slidesNSA.length) {
+          currentSlideNSA = newIndex;
+          updateSlideNSA();
+        }
+      }
+    </script>
+  </article>
+  

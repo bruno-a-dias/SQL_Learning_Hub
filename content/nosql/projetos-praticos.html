@@ -1,0 +1,32 @@
+<!-- Caminho completo do arquivo: /content/nosql/projetos-praticos.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Projetos Práticos NoSQL</h1>
+      <p>Ideias para portfólio usando tecnologias não relacionais.</p>
+    </header>
+  
+    <div class="card-grid card-grid--two">
+      <div class="card">
+        <h3 class="card__title">1. Crawler de Redes Sociais (MongoDB)</h3>
+        <p><strong>Tecnologia:</strong> Document Store (MongoDB).</p>
+        <p><strong>Projeto:</strong> Script Python que baixa tweets ou posts públicos e salva em JSON bruto.</p>
+        <p><strong>Desafio:</strong> Lidar com a estrutura variada (alguns posts tem foto, outros localização, outros apenas texto). O NoSQL aceita tudo sem reclamar.</p>
+      </div>
+      
+      <div class="card">
+        <h3 class="card__title">2. Chat em Tempo Real (Redis)</h3>
+        <p><strong>Tecnologia:</strong> Key-Value (Redis).</p>
+        <p><strong>Projeto:</strong> Um sistema simples de chat.</p>
+        <p><strong>Desafio:</strong> Usar a estrutura de listas do Redis para guardar as últimas 50 mensagens em memória RAM para acesso instantâneo (sub-milissegundo).</p>
+      </div>
+      
+      <div class="card">
+        <h3 class="card__title">3. Sensores IoT (Time Series)</h3>
+        <p><strong>Tecnologia:</strong> InfluxDB ou Timescale.</p>
+        <p><strong>Projeto:</strong> Simular 1000 sensores de temperatura enviando dados a cada segundo.</p>
+        <p><strong>Desafio:</strong> Agregação temporal (média de temperatura por hora) em tempo real.</p>
+      </div>
+    </div>
+  </article>
+  

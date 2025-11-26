@@ -1,24 +1,48 @@
 /* Caminho completo do arquivo: /css/theme-usa.css */
-/*
-  Tema EUA:
-  - Paleta baseada em azul e vermelho, com tons neutros para fundo.
-  - Focado em contraste e legibilidade. [web:7][web:10]
-*/
 
 :root {
-    --color-primary: #0b3c73;   /* Azul escuro para header e botões */
-    --color-secondary: #c62828; /* Vermelho para destaques controlados */
-    --color-accent: #1565c0;    /* Azul médio para links */
-  }
+  /* Old Glory Blue */
+  --color-primary: #3c3b6e; 
   
-  /* Exemplo de aplicação opcional */
-  a {
-    color: var(--color-accent);
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  .button--primary {
-    background-color: var(--color-primary);
-  }
+  /* Darker Blue */
+  --color-primary-dark: #2a2a50;
   
+  /* Old Glory Red */
+  --color-secondary: #b22234; 
+  
+  /* Accent Blue */
+  --color-accent: #1a73e8; 
+  
+  /* Fundos */
+  --bg-body: #f8f9fa;
+}
+
+/* Sobrescritas específicas do tema */
+.app-header {
+  background: #3c3b6e;
+  border-bottom: 4px solid #b22234; /* Detalhe em vermelho */
+}
+
+.side-nav__link--active {
+  border-left-color: var(--color-secondary); /* Vermelho destaque */
+  color: var(--color-primary);
+}
+
+.button--primary {
+  background-color: var(--color-secondary); /* Botões vermelhos */
+}
+
+.button--primary:hover {
+  background-color: #8b1c2a;
+}
+
+.slide h2 {
+  color: #fff; /* Branco puro no fundo escuro */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.alert-box {
+  border-left-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: #e8eaf6;
+}

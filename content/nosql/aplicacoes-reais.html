@@ -1,0 +1,30 @@
+<!-- Caminho completo do arquivo: /content/nosql/aplicacoes-reais.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Aplicações Reais de NoSQL</h1>
+      <p>Quem usa e para quê?</p>
+    </header>
+  
+    <section class="topic-block">
+      <h2>1. Amazon (Carrinho de Compras)</h2>
+      <p>
+        O banco DynamoDB (NoSQL) foi criado pela Amazon justamente porque os bancos SQL travavam na Black Friday. Eles precisavam de algo que <strong>nunca</strong> rejeitasse um item no carrinho (Alta Disponibilidade - AP), mesmo que o estoque estivesse levemente desatualizado por alguns segundos.
+      </p>
+    </section>
+  
+    <section class="topic-block">
+      <h2>2. Uber (Geolocalização)</h2>
+      <p>
+        Para gerenciar milhões de motoristas e passageiros se movendo em tempo real, bancos relacionais são lentos. O uso de bancos NoSQL geospaciais permite consultas como "Quem está num raio de 1km?" em milissegundos.
+      </p>
+    </section>
+  
+    <section class="topic-block">
+      <h2>3. Netflix (Catálogo e Personalização)</h2>
+      <p>
+        O perfil de cada usuário (o que assistiu, onde parou, lista) é um documento complexo e aninhado. O uso de Cassandra (Wide-Column) permite que a Netflix escale globalmente, garantindo que seu "Minha Lista" carregue rápido tanto no Brasil quanto no Japão.
+      </p>
+    </section>
+  </article>
+  

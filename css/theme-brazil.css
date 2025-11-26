@@ -1,24 +1,629 @@
-/* Caminho completo do arquivo: /css/theme-brazil.css */
-/*
-  Tema Brasil:
-  - Paleta baseada em verde, amarelo e azul.
-  - Mantém contraste mínimo recomendado para acessibilidade. [web:4][web:6][web:18]
-*/
+/* Caminho completo do arquivo: /css/style.css */
 
-:root {
-    --color-primary: #0b5e3c;   /* Verde escuro para header e botões principais */
-    --color-secondary: #f2c200; /* Amarelo para detalhes e destaques */
-    --color-accent: #165ea8;    /* Azul para links e elementos interativos */
+/* =========================================
+   1. VARIÁVEIS E RESET
+   ========================================= */
+   :root {
+    /* Cores base (sobrescritas pelos arquivos de tema) */
+    --color-primary: #004d40;
+    --color-primary-dark: #00251a;
+    --color-secondary: #f2c200;
+    --color-accent: #165ea8;
+    
+    --bg-body: #f5f5f5;
+    --bg-surface: #ffffff;
+    --bg-sidebar: #ffffff;
+    --border-color: #e0e0e0;
+    
+    --text-main: #222222;
+    --text-muted: #666666;
+    --text-light: #ffffff;
+  
+    /* Espaçamentos e Tamanhos */
+    --header-height: 60px;
+    --sidebar-width: 260px;
+    --radius-sm: 4px;
+    --radius-md: 8px;
   }
   
-  /* Exemplo de aplicação opcional para links e botões */
-  a {
-    color: var(--color-accent);
+  *, *::before, *::after {
+    box-sizing: border-box;
   }
-  a:hover {
-    text-decoration: underline;
+  
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
   }
+  
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* Utilitário para leitores de tela */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
+  /* =========================================
+     2. HEADER
+     ========================================= */
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--text-light);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+  
+  .app-header__logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  
+  .app-header__title {
+    font-weight: 700;
+    font-size: 1.125rem;
+  }
+  
+  .app-header__subtitle {
+    font-size: 0.75rem;
+    opacity: 0.9;
+    font-weight: 300;
+  }
+  
+  .app-header__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .lang-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    transition: transform 0.2s, background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .lang-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+  }
+  
+  .lang-toggle img {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Botão Hamburger (Mobile) */
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
+  
+  .nav-toggle__bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: #fff;
+    margin: 4px 0;
+  }
+  
+  /* =========================================
+     3. LAYOUT E SIDEBAR
+     ========================================= */
+  .app-layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    min-height: calc(100vh - var(--header-height));
+  }
+  
+  .side-nav {
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    padding: 1rem 0;
+    overflow-y: auto;
+    height: calc(100vh - var(--header-height));
+    position: sticky;
+    top: var(--header-height);
+  }
+  
+  .side-nav__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .side-nav__group {
+    margin-bottom: 1rem;
+  }
+  
+  .side-nav__group-title {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    cursor: default;
+  }
+  
+  .side-nav__sublist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .side-nav__link {
+    width: 100%;
+    display: block;
+    text-align: left;
+    border: none;
+    background: transparent;
+    color: var(--text-main);
+    padding: 0.5rem 1.25rem 0.5rem 2rem; /* Indentação */
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    border-left: 3px solid transparent;
+  }
+  
+  .side-nav__link:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    color: var(--color-primary);
+  }
+  
+  .side-nav__link--active {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--color-primary);
+    font-weight: 600;
+    border-left-color: var(--color-primary);
+  }
+  
+  /* =========================================
+     4. CONTEÚDO PRINCIPAL
+     ========================================= */
+  .main-content {
+    padding: 2rem;
+    max-width: 1200px; /* Limite de largura para leitura confortável */
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .breadcrumb {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+  
+  .breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .breadcrumb li:not(:last-child)::after {
+    content: "/";
+    margin-left: 0.5rem;
+    color: #ccc;
+  }
+  
+  /* Tipografia de Conteúdo */
+  .content-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+  }
+  
+  .content-header h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    color: var(--color-primary);
+  }
+  
+  .lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+  
+  .topic-block {
+    margin-bottom: 3rem;
+  }
+  
+  .topic-block h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    border-left: 4px solid var(--color-secondary);
+    padding-left: 0.75rem;
+  }
+  
+  /* =========================================
+     5. COMPONENTES DE UI
+     ========================================= */
+  
+  /* Cards */
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  
+  .card__title {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+  }
+  
+  .card-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .card-grid--two { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .card-grid--three { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  
+  /* Tabelas */
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    background: var(--bg-surface);
+  }
+  
+  .table th, .table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+  
+  .table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  /* Código e Preformatação */
+  .code-example, .code-card {
+    background: #282c34; /* Tema escuro padrão para código */
+    color: #abb2bf;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+  
+  .code-header {
+    background: #21252b;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #9da5b4;
+    border-bottom: 1px solid #3e4451;
+  }
+  
+  .code-body {
+    padding: 1rem;
+  }
+  
+  pre {
+    margin: 0;
+    overflow-x: auto;
+  }
+  
+  code {
+    font-family: "Fira Code", "Consolas", "Monaco", monospace;
+    font-size: 0.9em;
+  }
+  
+  /* Código inline (dentro de parágrafos) */
+  p > code, li > code, td > code {
+    background-color: rgba(0,0,0,0.06);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    color: #d63384; /* Cor de destaque para código inline */
+    font-size: 0.9em;
+  }
+  
+  .code-large {
+    font-family: "Fira Code", monospace;
+    line-height: 1.5;
+  }
+  
+  /* Badges (Etiquetas de Nível) */
+  .badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 99px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .badge--beginner { background-color: #e8f5e9; color: #2e7d32; }
+  .badge--intermediate { background-color: #fff3e0; color: #ef6c00; }
+  .badge--advanced { background-color: #ffebee; color: #c62828; }
+  
+  /* Alert Box (Dicas e Avisos) */
+  .alert-box {
+    background-color: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: #0d47a1;
+  }
+  
+  /* Lista de Features (Bullets customizados) */
+  .feature-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .feature-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+  
+  /* =========================================
+     6. COMPONENTES INTERATIVOS (JS)
+     ========================================= */
+  
+  /* SQL Playground */
+  .sql-exercise {
+    margin-top: 1rem;
+  }
+  
+  .sql-exercise__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .sql-exercise__textarea {
+    width: 100%;
+    min-height: 100px;
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: var(--radius-sm);
+    padding: 0.75rem;
+    font-family: "Consolas", monospace;
+    font-size: 1rem;
+    resize: vertical;
+    margin-bottom: 0.5rem;
+  }
+  
+  .sql-exercise__textarea:focus {
+    outline: 2px solid var(--color-secondary);
+    border-color: var(--color-secondary);
+  }
+  
+  .sql-exercise__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+  
+  .button:hover {
+    filter: brightness(1.1);
+  }
+  
   .button--primary {
     background-color: var(--color-primary);
+    color: #fff;
+  }
+  
+  .button--secondary {
+    background-color: #e0e0e0;
+    color: #333;
+  }
+  
+  .sql-exercise__result {
+    margin-top: 1rem;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 1rem;
+    min-height: 50px;
+  }
+  
+  /* Carrossel de Slides */
+  .carousel {
+    position: relative;
+    background: #000; /* Fundo escuro para modo apresentação */
+    color: #fff;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .slide {
+    flex: 1;
+    padding: 2rem;
+    display: none; /* JS controla display block */
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  
+  .slide.active-slide {
+    display: block;
+  }
+  
+  .slide-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .slide h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-secondary);
+  }
+  
+  .slide h3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.8;
+  }
+  
+  .slide-body {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 800px;
+    text-align: left;
+  }
+  
+  /* Ajustes de cor dentro do slide escuro */
+  .carousel .card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+  
+  .carousel .card__title {
+    color: var(--color-secondary);
+  }
+  
+  .carousel__controls {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* =========================================
+     7. RODAPÉ
+     ========================================= */
+  .app-footer {
+    background-color: #263238;
+    color: #b0bec5;
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: auto;
+  }
+  
+  /* =========================================
+     8. RESPONSIVIDADE
+     ========================================= */
+  @media (max-width: 768px) {
+    .app-layout {
+      grid-template-columns: 1fr;
+    }
+  
+    .side-nav {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      width: 260px;
+      height: calc(100vh - var(--header-height));
+      z-index: 900;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    }
+  
+    .side-nav--open {
+      transform: translateX(0);
+    }
+  
+    .nav-toggle {
+      display: inline-block;
+    }
+  
+    .main-content {
+      padding: 1rem;
+    }
+  
+    .slide h2 { font-size: 1.8rem; }
+    .code-example { font-size: 0.85rem; }
   }
   

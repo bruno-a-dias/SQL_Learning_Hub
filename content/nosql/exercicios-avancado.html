@@ -1,0 +1,50 @@
+<!-- Caminho completo do arquivo: /content/nosql/exercicios-avancado.html -->
+
+<article class="content-section">
+    <header class="content-header">
+      <h1>Exercícios de Arquitetura de Dados</h1>
+      <p>Projete soluções para ingestão e análise de grandes volumes de dados.</p>
+    </header>
+  
+    <!-- Exercício 1: Arquitetura Lambda -->
+    <section class="exercise-card card">
+      <div class="exercise-header">
+        <h2>Desafio 1: Onde guardar o quê?</h2>
+        <span class="badge badge--advanced">Arquitetura</span>
+      </div>
+      <p>
+        Você trabalha numa empresa de streaming de vídeo (tipo Netflix). Você tem dois tipos de dados chegando:
+      </p>
+      <ol>
+        <li><strong>Dados de Pagamento:</strong> Cartão de crédito, assinaturas (Baixo volume, alta importância, precisa de consistência).</li>
+        <li><strong>Logs de "Play/Pause":</strong> Bilhões de eventos por dia indicando onde o usuário pausou o vídeo (Alto volume, pode perder alguns, precisa de velocidade de escrita).</li>
+      </ol>
+      <p>
+        Arraste mentalmente cada dado para a tecnologia correta:
+      </p>
+      <div class="table-wrapper">
+        <table class="table">
+          <thead><tr><th>Dado</th><th>Tecnologia Ideal</th><th>Por quê?</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Pagamentos</td>
+              <td><strong>RDBMS (SQL)</strong></td>
+              <td>Precisa de ACID e Transações. Não pode haver erro de cobrança.</td>
+            </tr>
+            <tr>
+              <td>Logs de Vídeo</td>
+              <td><strong>NoSQL (Colunar/Wide-Column) ou Data Lake</strong></td>
+              <td>Precisa de escrita massiva (Write-heavy). Cassandra ou S3 são ideais.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="sql-exercise__actions">
+          <div class="exercise-status">
+            <input type="checkbox" id="check-nosql-adv-1">
+            <label for="check-nosql-adv-1">Entendi a separação de responsabilidades</label>
+          </div>
+      </div>
+    </section>
+  </article>
+  
